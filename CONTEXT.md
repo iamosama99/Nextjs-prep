@@ -192,20 +192,23 @@ Phase 9, Topic 3 as a hands-on migration exercise — ESLint, ESLint Flat Config
 Playground routes are added retroactively for Phase 1–2 topics that benefit from a live
 demo, and by default from Phase 3 onward.
 
-**Known open item:** Phase 1 (topics 2, 5, 8) and Phase 2 (topics 2, 5, 7, 12) were written
-before the app was scaffolded, from a "Next.js 15" mental model, and contain specific
-inaccuracies now confirmed against the real Next.js 16 docs (missing `PageProps`/
-`LayoutProps`/`RouteContext` typed-route helpers from `next typegen`; the mandatory
-`default.tsx` build-failure requirement for parallel route slots; refined prefetching
-behavior). These need a correction pass. Phase 3's topic list (rendering & caching) was
-written around the Next.js 13–15 layered-cache mental model (Data Cache / Full Route Cache
-/ Router Cache) and must be re-verified against `node_modules/next/dist/docs/` — Next.js 16
-introduces a distinct **Cache Components** model (`cacheComponents` config, `cacheLife`/
-`cacheTag` now stable, new `updateTag`/`refresh()` APIs, `revalidateTag` now requires a
-second argument) that may not map cleanly onto the originally planned topic list. Phase 7
-(middleware) also needs revisiting: `middleware.ts` is deprecated in favor of `proxy.ts` in
-Next.js 16 (edge runtime is not supported in `proxy`). Do not write or fix these without
-re-reading the relevant bundled docs first.
+**Resolved:** Phase 1 (topics 5, 8) and Phase 2 (topics 2, 5, 6, 7, 12) have been corrected
+against the real Next.js 16 docs — `PageProps`/`LayoutProps`/`RouteContext` typed-route
+helpers now covered, the named-slot `default.tsx` mandatory-error requirement corrected
+(distinct from the `children`-slot 404 fallback), `typedRoutes` updated to stable/top-level,
+prefetching behavior updated (skip-without-`loading.tsx`, layout dedup, `useLinkStatus`,
+`prefetch={false}`/hover-only), and the React 19.2/Node 20.9+ version facts added.
+
+**Still open:** Phase 3's topic list (rendering & caching) was written around the Next.js
+13–15 layered-cache mental model (Data Cache / Full Route Cache / Router Cache) and must be
+re-scoped against `node_modules/next/dist/docs/` before writing it — Next.js 16 introduces a
+distinct **Cache Components** model (`cacheComponents` config, `cacheLife`/`cacheTag` now
+stable, new `updateTag`/`refresh()` APIs, `revalidateTag` now requires a second argument)
+that likely doesn't map cleanly onto the originally planned 12-topic list. Phase 7
+(middleware) also needs revisiting before it's written: `middleware.ts` is deprecated in
+favor of `proxy.ts` in Next.js 16 (edge runtime is not supported in `proxy`). Do not write
+either phase without re-reading the relevant bundled docs first and, ideally, revising
+their planned topic lists in the tracker below to match current reality.
 
 ---
 

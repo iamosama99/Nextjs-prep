@@ -7,7 +7,8 @@
 | `compilerOptions.paths` in `tsconfig.json` | Defines `@/*` → resolves both for TypeScript *and* Next's bundler, no separate config |
 | `moduleResolution: "bundler"` | Matches how Next's actual bundler resolves modules, not Node's older resolution algorithm |
 | `plugins: [{ "name": "next" }]` | Editor-level Next-aware type checking (route prop shapes, etc.) |
-| `experimental.typedRoutes` | Compile-time-checked `href`s passed to `next/link` |
+| `typedRoutes: true` (stable, top-level in `next.config.ts`) | Compile-time-checked `href`s passed to `next/link` |
+| `PageProps<Route>` / `LayoutProps<Route>` / `RouteContext<Route>` | Globally available, auto-generated helpers that type `params`/`searchParams`/parallel-route slots per literal route — no import needed |
 | `next-env.d.ts` | Auto-generated ambient types — never hand-edited (Topic 2) |
 
 ## Where Does This Run?
@@ -52,15 +53,45 @@ A scaffolded `tsconfig.json` looks roughly like:
 - **`paths: { "@/*": ["./*"] }`** — this single mapping is read by *both* TypeScript (for type checking and editor navigation) and Next's bundler (for actually resolving the import at build time) — no duplicate webpack/Turbopack `resolve.alias` entry needed.
 - **`.next/types/**/*.ts`** in `include` — Next generates route-specific type-checking files here so that, for example, a `page.tsx`'s exported props are validated against what Next will actually pass at runtime.
 
-**`experimental.typedRoutes`**, enabled in `next.config.ts`, goes further: it generates a union type of every valid route in your app, so `<Link href="/wrogn-path">` becomes a compile-time TypeScript error instead of a silent 404 discovered at runtime.
+**`typedRoutes: true`**, set as a top-level (no longer `experimental.`, as of the current stable release) option in `next.config.ts`, generates a union type of every valid route in your app, so `<Link href="/wrogn-path">` becomes a compile-time TypeScript error instead of a silent 404 discovered at runtime.
 
 > **Check yourself:** Why does `jsx: "preserve"` make sense in a Next.js project specifically, rather than having TypeScript compile JSX itself?
+
+## Typed Props: `PageProps`, `LayoutProps`, `RouteContext`
+
+`typedRoutes` only validates the *string* passed as an `href` — it says nothing about what a page or layout's own `params`/`searchParams` are typed as. That's a separate, complementary mechanism: running `next dev`, `next build`, or explicitly `next typegen` generates three **globally available** helper types, keyed by the literal route string, with no import required:
+
+```tsx
+// app/blog/[slug]/page.tsx
+export default async function Page(props: PageProps<'/blog/[slug]'>) {
+  const { slug } = await props.params;       // typed as string, inferred from the route literal
+  const query = await props.searchParams;    // Record<string, string | string[] | undefined>
+  return <h1>{slug}</h1>;
+}
+```
+
+```tsx
+// app/dashboard/layout.tsx  — with app/dashboard/@analytics also on disk
+export default function Layout(props: LayoutProps<'/dashboard'>) {
+  return (
+    <>
+      {props.children}
+      {props.analytics} {/* typed automatically from the @analytics folder — Phase 2, Topic 7 */}
+    </>
+  );
+}
+```
+
+Passing the route as a string literal (`'/blog/[slug]'`) is what gives you autocomplete and a strictly-keyed `params` object — a static route resolves `params` to `{}`. `RouteContext<Route>` is the equivalent helper for Route Handlers (Phase 6). Manually writing out `{ params: Promise<{ slug: string }> }` yourself, as earlier Next.js versions required and as you'll still see throughout the ecosystem, still works — these helpers just generate that same shape for you, correctly, from the actual folder structure, so a route rename can't silently desync the type from reality the way a hand-written one can.
+
+> **Check yourself:** If `PageProps` and `typedRoutes` are both "route type safety" features, what specifically does each one actually check, and why doesn't either one make the other redundant?
 
 ## Gotchas
 
 - **Changing `moduleResolution` away from `"bundler"`** to satisfy an unrelated library's setup instructions can silently desync what TypeScript thinks resolves from what Next's bundler actually resolves, producing "works at runtime, red squiggly in editor" (or worse, the reverse) confusion.
 - **Deep relative imports (`../../../../`) still work** even with aliases configured — nothing forces consistency, so a codebase can end up with both styles mixed unless enforced by lint rules.
 - **`typedRoutes` requires the route to already exist on disk** at type-check time — dynamically constructed hrefs (built from a string at runtime) won't get the same compile-time guarantee.
+- **`PageProps`/`LayoutProps` types go stale until you regenerate them.** They're written to `.next/types/` by `next dev`, `next build`, or `next typegen` — if you add a new dynamic segment and your editor is showing an outdated type error, running one of those (or just letting `next dev` pick up the change) is the fix, not fighting the type system.
 
 ## Interview Questions
 
@@ -76,11 +107,17 @@ Answer: Next-aware type checking for framework-specific contracts — validating
 
 The trap: conflating it with ESLint's `eslint-config-next`, which is a separate, lint-rule-based mechanism.
 
-**Q (Medium): What is `experimental.typedRoutes`, and what class of bug does it prevent?**
+**Q (Medium): What is `typedRoutes`, and what class of bug does it prevent?**
 
-Answer: It generates a compile-time union type of every valid route in the app and type-checks `href` values passed to `next/link` (and the router) against it, turning a typo'd or stale route path into a build-time TypeScript error instead of a runtime 404.
+Answer: It generates a compile-time union type of every valid route in the app and type-checks `href` values passed to `next/link` (and the router) against it, turning a typo'd or stale route path into a build-time TypeScript error instead of a runtime 404. It's a stable, top-level `next.config.ts` option now (previously `experimental.typedRoutes` in older versions).
 
-The trap: not knowing this exists, or assuming Next.js validates route strings by default without opting in.
+The trap: not knowing this exists, assuming Next.js validates route strings by default without opting in, or citing it as still experimental.
+
+**Q (Medium): What do `PageProps` and `LayoutProps` give you that manually writing `{ params: Promise<{ slug: string }> }` doesn't, and how are they different from `typedRoutes`?**
+
+Answer: `PageProps<Route>`/`LayoutProps<Route>` are globally available helper types, generated from the actual route folder structure during `next dev`/`next build`/`next typegen`, that give you a correctly-typed `params`, `searchParams`, and (for layouts) parallel-route slots for a given literal route — with no manual typing and no risk of the type silently drifting from reality after a route is renamed. `typedRoutes` is a separate, complementary feature: it only validates that a string passed as `href` corresponds to a real route; it says nothing about what that route's own `params` are shaped like. Neither makes the other redundant — one checks the destination string is valid, the other checks what you receive once you're there.
+
+The trap: conflating the two as "the same typed-routes feature," or assuming one implies the other is unnecessary.
 
 **Q (Low): Why is `next-env.d.ts` listed in `tsconfig.json`'s `include`, and why shouldn't you remove it?**
 
@@ -95,6 +132,7 @@ The trap: seeing a nearly-empty auto-generated file and assuming it's safe to de
 - [ ] Can explain, without notes, why a path alias needs no separate bundler config in Next.js
 - [ ] Can state what the `next` TS plugin adds beyond stock TypeScript
 - [ ] Can describe what `typedRoutes` catches and its limitation with dynamically built hrefs
+- [ ] Can explain what `PageProps`/`LayoutProps` generate and why that's different from `typedRoutes`
 - [ ] Knows why `jsx: "preserve"` is the correct setting in this context
 - [ ] Would not delete `next-env.d.ts` or remove it from `include`
 

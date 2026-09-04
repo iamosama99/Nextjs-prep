@@ -25,7 +25,9 @@ Most navigation in a real app is genuinely link-like — a nav bar, a list of pr
 
 ## How It Works
 
-**`<Link>` prefetches automatically in production.** For a link to a fully static route, Next.js prefetches the entire route's data in the background once the link scrolls into the viewport, so navigating feels instant — the content is often already sitting in the Router Cache (Phase 3) by the time the user clicks. For a link to a dynamic route, only the shared, static parts up to the nearest `loading.tsx` boundary are prefetched by default, since prefetching genuinely dynamic content ahead of time would be wasted work (or stale by the time it's used) — this ties directly into the Router Cache mechanics covered fully in Phase 3.
+**`<Link>` prefetches automatically in production.** For a link to a fully static route, Next.js prefetches the entire route in the background once the link enters the viewport, so navigating feels instant — the content is often already available client-side by the time the user clicks. For a link to a dynamic route, the behavior depends on whether that route has a `loading.tsx`: **with** one, Next.js partially prefetches — the shared, static shell up to that `loading.tsx` boundary; **without** one, prefetching for that link is **skipped entirely**, not just reduced. This is a real, easy-to-miss reason a dynamic route can feel slower to navigate to than expected — the fix is usually adding a `loading.tsx` (Topic 9), not fighting the prefetcher.
+
+Current Next.js also changed *how* prefetch requests themselves are made, not just what triggers them: prefetching is layout-aware (a layout shared by multiple prefetched links is only downloaded once) and incremental (a navigation only fetches the parts not already sitting in the client-side cache, rather than re-requesting a whole route). The practical, visible consequence is more individual prefetch requests in the network tab with a much smaller total transferred size — that's the current design intent, not a regression to investigate.
 
 ```tsx
 import Link from 'next/link';
@@ -82,9 +84,49 @@ export default function SearchResults() {
 
 > **Check yourself:** Why does wrapping a `useSearchParams()`-using component in `<Suspense>` matter for the rest of the page's ability to stay statically rendered?
 
+## Controlling and Observing Prefetch/Navigation
+
+Two more pieces worth knowing alongside the defaults above:
+
+**Opting out of, or delaying, prefetch** — useful for large lists of links (an infinite-scroll table) where prefetching every visible link would waste resources:
+
+```tsx
+<Link prefetch={false} href="/blog/some-post">Post</Link>
+```
+
+A middle ground is prefetching only on hover instead of on-viewport, so you're not paying for links the user's eyes merely passed over:
+
+```tsx
+'use client';
+import Link from 'next/link';
+import { useState } from 'react';
+
+function HoverPrefetchLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const [active, setActive] = useState(false);
+  return (
+    <Link href={href} prefetch={active ? null : false} onMouseEnter={() => setActive(true)}>
+      {children}
+    </Link>
+  );
+}
+```
+
+**Observing a pending navigation** — `useLinkStatus` reports whether the `<Link>` it's nested inside is currently navigating, useful on slow networks where a prefetch hasn't finished by the time the user clicks and there's otherwise no visual feedback that anything happened:
+
+```tsx
+'use client';
+import { useLinkStatus } from 'next/link';
+
+function LoadingIndicator() {
+  const { pending } = useLinkStatus();
+  return pending ? <Spinner /> : null;
+}
+```
+
 ## Gotchas
 
 - **Assuming you need to manually implement prefetching.** `<Link>` already does it by default in production (though it's disabled in `next dev` by default for faster iteration) — reaching for a custom prefetch solution on top is usually redundant.
+- **A dynamic route with no `loading.tsx` isn't "partially prefetched" — it isn't prefetched at all.** This is a distinct failure mode from static routes and easy to misdiagnose as "prefetching is broken" when the actual fix is adding a `loading.tsx` boundary.
 - **Confusing `router.refresh()` with `router.push()`.** `refresh()` doesn't navigate at all — it's purely "re-fetch this route's server data in place." Using `push` to the current URL as a workaround to "refresh" data is a common but unnecessary pattern once `refresh()` is understood correctly.
 - **Skipping the `<Suspense>` wrapper around `useSearchParams()`** and being surprised the entire route lost its static rendering — the fix isn't avoiding `useSearchParams()`, it's isolating its cost with a boundary.
 
@@ -104,9 +146,15 @@ The trap: not knowing the Suspense requirement exists at all, or assuming `useSe
 
 **Q (Medium): Does `next/link` prefetch by default, and does that differ between static and dynamic routes?**
 
-Answer: Yes, in production — for static routes, the full route is prefetched once the link is visible in the viewport; for dynamic routes, only the shared static shell up to the nearest `loading.tsx` boundary is prefetched by default, since prefetching the fully dynamic content ahead of an actual navigation would often be wasted or stale work.
+Answer: Yes, in production — for static routes, the full route is prefetched once the link is visible in the viewport. For dynamic routes it depends entirely on whether `loading.tsx` exists: with one, the shared static shell up to that boundary is partially prefetched; without one, prefetching for that link is skipped entirely rather than degraded, since there's no safe static shell Next.js can prefetch ahead of the actual dynamic render.
 
-The trap: assuming prefetching behaves identically regardless of the target route's rendering mode, or not knowing it's disabled by default in `next dev`.
+The trap: describing dynamic-route prefetching as uniformly "partial" regardless of `loading.tsx` — the no-`loading.tsx` case is a full skip, not a smaller partial fetch, and conflating the two misses a real, actionable performance lever.
+
+**Q (Medium): How would you avoid prefetching every link in a very long list, without giving up prefetching entirely for the app?**
+
+Answer: Set `prefetch={false}` on those specific `<Link>` components to opt them out individually — appropriate for something like an infinite-scroll table where prefetching every visible row would waste resources on links the user will likely never click. A middle ground is prefetching only on hover, toggling the `prefetch` prop from `false` to `null` (the default, viewport-triggered behavior) once the user's cursor enters the link, so you pay the prefetch cost only for links the user shows real intent toward.
+
+The trap: disabling prefetching app-wide via some global setting (there isn't a clean one) instead of scoping the opt-out to the specific links that actually need it.
 
 **Q (Medium): What's the difference between `usePathname` and `useSearchParams` in terms of what they return?**
 
@@ -132,7 +180,8 @@ The trap: treating them as interchangeable navigation calls with no user-facing 
 
 - [ ] Can state precisely what `router.refresh()` does and does not do
 - [ ] Can explain why `useSearchParams()` needs a Suspense boundary, and what happens without one
-- [ ] Knows `<Link>` prefetches differently for static vs. dynamic routes
+- [ ] Knows `<Link>` prefetches differently for static vs. dynamic routes, and that a dynamic route with no `loading.tsx` isn't prefetched at all
+- [ ] Can name at least one way to control prefetch behavior per-link (`prefetch={false}`, hover-only) and one way to observe a pending navigation (`useLinkStatus`)
 - [ ] Can distinguish `usePathname` from `useSearchParams` by what part of the URL each returns
 - [ ] Can give a concrete scenario where `useRouter`'s imperative navigation is the right tool over `<Link>`
 

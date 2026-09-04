@@ -42,6 +42,14 @@ export default async function DocsPage({
 }
 ```
 
+Or, using the generated `PageProps` helper (Phase 1, Topic 5) instead of writing the type by hand — same shape, derived automatically from the route literal:
+
+```tsx
+export default async function DocsPage(props: PageProps<'/docs/[...slug]'>) {
+  const { slug } = await props.params; // still string[]
+}
+```
+
 **The required-vs-optional distinction is the detail interviewers probe most.** `[...slug]` requires at least one path segment after `/docs` — a request to exactly `/docs` does not match this route at all and falls through to a 404 (or whatever other route, if any, actually owns `/docs`). `[[...slug]]` extends the match to cover that zero-segment case too, which is the right choice whenever the "root" of the catch-all tree (`/docs` itself) should render *something* rather than 404 — commonly, a docs homepage or index.
 
 **Precedence against other route types:** when multiple route patterns could technically match the same request, Next.js resolves the *most specific* match first — a static segment (`app/docs/getting-started/page.tsx`) beats a dynamic segment (`[slug]`), which beats a catch-all (`[...slug]`). This lets you carve out specific, individually-customized pages inside an otherwise catch-all-driven section without any explicit priority configuration.

@@ -7,6 +7,7 @@
 | Next.js 13 | React 18 | Initial Server Components support |
 | Next.js 14 | React 18 | Server Actions stabilized |
 | Next.js 15 | React 19 | `useActionState`, `useOptimistic`, new form/`ref` handling as stable APIs |
+| Next.js 16 | React 19.2 (canary) | View Transitions, `useEffectEvent`, `Activity` — still being incrementally stabilized in App Router |
 
 ## Where Does This Run?
 
@@ -24,11 +25,12 @@ React Server Components didn't ship as a finished, stable public API and then ge
 
 ## How It Works
 
-`create-next-app` installs a matching `react`/`react-dom` version as part of scaffolding — you don't choose it independently. Each Next.js major release documents (and enforces via `peerDependencies` ranges) which React version range it expects. When a Next.js major version bumps, it's frequently *because* a new React capability landed that the App Router needed — Next.js 15 requiring React 19 wasn't arbitrary version-number alignment, it's because stable `useActionState`, `useOptimistic`, and related form/ref improvements (covered in Phase 5) only exist starting in React 19.
+`create-next-app` installs a matching `react`/`react-dom` version as part of scaffolding — you don't choose it independently. Each Next.js major release documents (and enforces via `peerDependencies` ranges) which React version range it expects. When a Next.js major version bumps, it's frequently *because* a new React capability landed that the App Router needed — Next.js 15 requiring React 19 wasn't arbitrary version-number alignment, it's because stable `useActionState`, `useOptimistic`, and related form/ref improvements (covered in Phase 5) only exist starting in React 19. Next.js 16 goes a step further and explicitly ships React 19.2 as a **canary** release, not a stable one — the App Router is deliberately running ahead of React's own stable line to get View Transitions, `useEffectEvent`, and `Activity` before they're broadly stable.
 
 Practically, this means:
 - Upgrading Next.js major versions usually **requires** a React version bump too — the release notes for a Next.js major nearly always state the minimum React version.
 - Manually forcing a React version *ahead of* what your Next.js version expects (e.g., installing a React canary build on top of stable Next.js 14) is explicitly unsupported and can break RSC internals in ways that don't produce a clear error message — because the coupling isn't just "features may be missing," it's shared internal implementation detail between the two packages at a given point in time.
+- Next.js major versions also bump their **Node.js and TypeScript minimums** alongside the React coupling — Next.js 16 requires Node.js 20.9+ (dropping Node 18 entirely) and TypeScript 5.1+, which trips up upgrades on older CI images just as often as the React mismatch does.
 
 > **Check yourself:** Why is "install a newer React version and see if it still works" a meaningfully riskier move in a Next.js App Router project than in almost any other React-based tool?
 
@@ -58,6 +60,12 @@ Answer: Canary is React's pre-release channel where new features (like RSC APIs,
 
 The trap: not knowing this channel exists, or assuming Next.js only ever depends on already-stable, publicly documented React releases.
 
+**Q (Low): Besides the React version, what else does a Next.js major version bump typically raise the minimum requirement for?**
+
+Answer: The minimum supported Node.js and TypeScript versions. Next.js 16, for example, requires Node.js 20.9+ (Node 18 support was dropped entirely) and TypeScript 5.1+ — worth checking alongside the React version when planning an upgrade, since an outdated CI image or local Node version can block the upgrade just as effectively as a React mismatch.
+
+The trap: only checking `package.json`'s React version during an upgrade plan and being surprised by a Node-version failure in CI.
+
 ---
 
 ## Self-Assessment
@@ -67,6 +75,7 @@ The trap: not knowing this channel exists, or assuming Next.js only ever depends
 - [ ] Knows what React's canary channel is and why Next.js has depended on it
 - [ ] Would flag manually bumping only one of `react`/`next` as a risky, unsupported move in code review
 - [ ] Can explain why a version mismatch here often fails subtly rather than with a clear error
+- [ ] Knows a Next.js major bump also raises Node.js/TypeScript minimums, not just the React version
 
 ---
 *Next: Phase 2 — App Router: File Conventions & Routing. Phase 1 covered the project's shape and setup; Phase 2 is where the file-based routing system those files enable gets a full treatment, starting with `page.tsx`/`layout.tsx` fundamentals.*
