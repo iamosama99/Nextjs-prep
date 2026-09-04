@@ -217,12 +217,12 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 4 | Route groups `(folder)` for organization | `notes/phase-02-app-router/04-route-groups/notes.md` | ✅ |
 | 5 | Dynamic segments `[id]` | `notes/phase-02-app-router/05-dynamic-segments/notes.md` | ✅ |
 | 6 | Catch-all & optional catch-all `[...slug]` / `[[...slug]]` | `notes/phase-02-app-router/06-catch-all-segments/notes.md` | ✅ |
-| 7 | Parallel routes `@slot` | `notes/phase-02-app-router/07-parallel-routes/notes.md` | 👉 |
-| 8 | Intercepting routes `(.)/(..)/(...)` | `notes/phase-02-app-router/08-intercepting-routes/notes.md` | ⬜ |
-| 9 | `loading.tsx` & instant loading states | `notes/phase-02-app-router/09-loading-ui/notes.md` | ⬜ |
-| 10 | `error.tsx` & error boundaries per route segment | `notes/phase-02-app-router/10-error-boundaries/notes.md` | ⬜ |
-| 11 | `not-found.tsx` & `notFound()` | `notes/phase-02-app-router/11-not-found/notes.md` | ⬜ |
-| 12 | Linking & navigating (`next/link`, `useRouter`, `usePathname`, `useSearchParams`) | `notes/phase-02-app-router/12-linking-and-navigating/notes.md` | ⬜ |
+| 7 | Parallel routes `@slot` | `notes/phase-02-app-router/07-parallel-routes/notes.md` | ✅ |
+| 8 | Intercepting routes `(.)/(..)/(...)` | `notes/phase-02-app-router/08-intercepting-routes/notes.md` | ✅ |
+| 9 | `loading.tsx` & instant loading states | `notes/phase-02-app-router/09-loading-ui/notes.md` | ✅ |
+| 10 | `error.tsx` & error boundaries per route segment | `notes/phase-02-app-router/10-error-boundaries/notes.md` | ✅ |
+| 11 | `not-found.tsx` & `notFound()` | `notes/phase-02-app-router/11-not-found/notes.md` | ✅ |
+| 12 | Linking & navigating (`next/link`, `useRouter`, `usePathname`, `useSearchParams`) | `notes/phase-02-app-router/12-linking-and-navigating/notes.md` | ✅ |
 
 ### Phase 3 — Rendering Model & Caching (12 topics)
 
@@ -230,7 +230,7 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Static vs dynamic rendering — how Next decides | `notes/phase-03-rendering-caching/01-static-vs-dynamic-rendering/notes.md` | ⬜ |
+| 1 | Static vs dynamic rendering — how Next decides | `notes/phase-03-rendering-caching/01-static-vs-dynamic-rendering/notes.md` | 👉 |
 | 2 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/02-request-memoization/notes.md` | ⬜ |
 | 3 | Data Cache (`fetch` cache, `force-cache` / `no-store`) | `notes/phase-03-rendering-caching/03-data-cache/notes.md` | ⬜ |
 | 4 | Full Route Cache (build-time HTML/RSC payload cache) | `notes/phase-03-rendering-caching/04-full-route-cache/notes.md` | ⬜ |
