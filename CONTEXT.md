@@ -198,8 +198,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | What Next.js solves vs a plain React/Vite SPA | `notes/phase-01-fundamentals/01-why-nextjs/notes.md` | 👉 |
-| 2 | `create-next-app` anatomy & project structure | `notes/phase-01-fundamentals/02-create-next-app-anatomy/notes.md` | ⬜ |
+| 1 | What Next.js solves vs a plain React/Vite SPA | `notes/phase-01-fundamentals/01-why-nextjs/notes.md` | ✅ |
+| 2 | `create-next-app` anatomy & project structure | `notes/phase-01-fundamentals/02-create-next-app-anatomy/notes.md` | 👉 |
 | 3 | App Router vs Pages Router (high-level orientation) | `notes/phase-01-fundamentals/03-app-vs-pages-router/notes.md` | ⬜ |
 | 4 | `next.config.ts` essentials | `notes/phase-01-fundamentals/04-next-config-essentials/notes.md` | ⬜ |
 | 5 | TypeScript setup & path aliases in Next.js | `notes/phase-01-fundamentals/05-typescript-setup/notes.md` | ⬜ |
