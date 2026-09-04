@@ -199,19 +199,19 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | # | Topic | File | Status |
 |---|-------|------|--------|
 | 1 | What Next.js solves vs a plain React/Vite SPA | `notes/phase-01-fundamentals/01-why-nextjs/notes.md` | ✅ |
-| 2 | `create-next-app` anatomy & project structure | `notes/phase-01-fundamentals/02-create-next-app-anatomy/notes.md` | 👉 |
-| 3 | App Router vs Pages Router (high-level orientation) | `notes/phase-01-fundamentals/03-app-vs-pages-router/notes.md` | ⬜ |
-| 4 | `next.config.ts` essentials | `notes/phase-01-fundamentals/04-next-config-essentials/notes.md` | ⬜ |
-| 5 | TypeScript setup & path aliases in Next.js | `notes/phase-01-fundamentals/05-typescript-setup/notes.md` | ⬜ |
-| 6 | Environment variables (`.env`, `NEXT_PUBLIC_` prefix) | `notes/phase-01-fundamentals/06-environment-variables/notes.md` | ⬜ |
-| 7 | Static assets & the `public/` folder | `notes/phase-01-fundamentals/07-static-assets-public-folder/notes.md` | ⬜ |
-| 8 | Next.js versioning & its React version coupling | `notes/phase-01-fundamentals/08-nextjs-react-versioning/notes.md` | ⬜ |
+| 2 | `create-next-app` anatomy & project structure | `notes/phase-01-fundamentals/02-create-next-app-anatomy/notes.md` | ✅ |
+| 3 | App Router vs Pages Router (high-level orientation) | `notes/phase-01-fundamentals/03-app-vs-pages-router/notes.md` | ✅ |
+| 4 | `next.config.ts` essentials | `notes/phase-01-fundamentals/04-next-config-essentials/notes.md` | ✅ |
+| 5 | TypeScript setup & path aliases in Next.js | `notes/phase-01-fundamentals/05-typescript-setup/notes.md` | ✅ |
+| 6 | Environment variables (`.env`, `NEXT_PUBLIC_` prefix) | `notes/phase-01-fundamentals/06-environment-variables/notes.md` | ✅ |
+| 7 | Static assets & the `public/` folder | `notes/phase-01-fundamentals/07-static-assets-public-folder/notes.md` | ✅ |
+| 8 | Next.js versioning & its React version coupling | `notes/phase-01-fundamentals/08-nextjs-react-versioning/notes.md` | ✅ |
 
 ### Phase 2 — App Router: File Conventions & Routing (12 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | File-based routing fundamentals (`page.tsx`, `layout.tsx`) | `notes/phase-02-app-router/01-file-based-routing/notes.md` | ⬜ |
+| 1 | File-based routing fundamentals (`page.tsx`, `layout.tsx`) | `notes/phase-02-app-router/01-file-based-routing/notes.md` | 👉 |
 | 2 | Root layout & nested layouts | `notes/phase-02-app-router/02-nested-layouts/notes.md` | ⬜ |
 | 3 | Templates vs layouts | `notes/phase-02-app-router/03-templates-vs-layouts/notes.md` | ⬜ |
 | 4 | Route groups `(folder)` for organization | `notes/phase-02-app-router/04-route-groups/notes.md` | ⬜ |
