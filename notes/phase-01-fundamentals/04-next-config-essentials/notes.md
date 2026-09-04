@@ -1,5 +1,7 @@
 # `next.config.ts` Essentials
 
+> **Live demo:** `npm run dev` → [/playground/phase-01-fundamentals/04-next-config-essentials](http://localhost:3000/playground/phase-01-fundamentals/04-next-config-essentials)
+
 ## Quick Reference
 
 | Option | What it controls |

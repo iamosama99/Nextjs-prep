@@ -189,8 +189,13 @@ Nextjs-prep/
 `create-next-app` (TypeScript, App Router, no Tailwind yet — that's added deliberately in
 Phase 9, Topic 3 as a hands-on migration exercise — ESLint, ESLint Flat Config, ESLint's
 `typegen`-based route types on by default). Installed: **Next.js 16.3.4, React 19.2.8**.
-Playground routes are added retroactively for Phase 1–2 topics that benefit from a live
-demo, and by default from Phase 3 onward.
+Playground routes are now live under `app/playground/` for every Phase 2 topic (12/12 —
+routing is inherently visual, so this phase got full coverage) and the three genuinely
+demonstrable Phase 1 topics (`next.config` redirects/rewrites, env var public/server-only
+visibility, the `public/` folder). Each topic's `notes.md` links its demo at the top. The
+rest of Phase 1 (why-Next.js, create-next-app anatomy, App-vs-Pages orientation, TypeScript
+setup, versioning) stays notes-only by design — nothing to click through. From Phase 3
+onward, add a playground route by default for any topic with observable runtime behavior.
 
 **Resolved:** Phase 1 (topics 5, 8) and Phase 2 (topics 2, 5, 6, 7, 12) have been corrected
 against the real Next.js 16 docs — `PageProps`/`LayoutProps`/`RouteContext` typed-route

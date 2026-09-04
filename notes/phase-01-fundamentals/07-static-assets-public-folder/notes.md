@@ -1,5 +1,7 @@
 # Static Assets & the `public/` Folder
 
+> **Live demo:** `npm run dev` → [/playground/phase-01-fundamentals/07-static-assets-public-folder](http://localhost:3000/playground/phase-01-fundamentals/07-static-assets-public-folder)
+
 ## Quick Reference
 
 | You want | Use `public/` | Import the asset in code instead |

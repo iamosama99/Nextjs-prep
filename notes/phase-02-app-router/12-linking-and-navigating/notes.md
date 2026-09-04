@@ -1,5 +1,7 @@
 # Linking & Navigating (`next/link`, `useRouter`, `usePathname`, `useSearchParams`)
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/12-linking-and-navigating](http://localhost:3000/playground/phase-02-app-router/12-linking-and-navigating)
+
 ## Quick Reference
 
 | API | Type | Gives you |

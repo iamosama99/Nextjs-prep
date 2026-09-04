@@ -1,5 +1,7 @@
 # Intercepting Routes (`(.)` / `(..)` / `(...)`)
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/08-intercepting-routes](http://localhost:3000/playground/phase-02-app-router/08-intercepting-routes)
+
 ## Quick Reference
 
 | Convention | Matches segments... |

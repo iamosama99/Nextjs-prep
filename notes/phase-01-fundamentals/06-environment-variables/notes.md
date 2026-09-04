@@ -1,5 +1,7 @@
 # Environment Variables (`.env`, `NEXT_PUBLIC_` Prefix)
 
+> **Live demo:** `npm run dev` → [/playground/phase-01-fundamentals/06-environment-variables](http://localhost:3000/playground/phase-01-fundamentals/06-environment-variables) (copy `.env.example` to `.env.local` first)
+
 ## Quick Reference
 
 | Variable name | Accessible where | When its value gets fixed |

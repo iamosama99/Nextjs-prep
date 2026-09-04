@@ -1,5 +1,7 @@
 # `loading.tsx` & Instant Loading States
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/09-loading-ui](http://localhost:3000/playground/phase-02-app-router/09-loading-ui)
+
 ## Quick Reference
 
 | Fact | Detail |

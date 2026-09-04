@@ -1,5 +1,7 @@
 # `error.tsx` & Error Boundaries Per Route Segment
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/10-error-boundaries](http://localhost:3000/playground/phase-02-app-router/10-error-boundaries)
+
 ## Quick Reference
 
 | Fact | Detail |

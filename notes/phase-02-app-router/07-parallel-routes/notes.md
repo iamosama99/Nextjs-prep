@@ -1,5 +1,7 @@
 # Parallel Routes `@slot`
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/07-parallel-routes](http://localhost:3000/playground/phase-02-app-router/07-parallel-routes)
+
 ## Quick Reference
 
 | Fact | Detail |

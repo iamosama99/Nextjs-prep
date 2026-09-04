@@ -1,5 +1,7 @@
 # File-Based Routing Fundamentals (`page.tsx`, `layout.tsx`)
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/01-file-based-routing](http://localhost:3000/playground/phase-02-app-router/01-file-based-routing)
+
 ## Quick Reference
 
 | File name | What it does |

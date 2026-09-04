@@ -1,5 +1,7 @@
 # Catch-All & Optional Catch-All Segments (`[...slug]` / `[[...slug]]`)
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/06-catch-all-segments](http://localhost:3000/playground/phase-02-app-router/06-catch-all-segments)
+
 ## Quick Reference
 
 | Syntax | Matches | Does it match the base route with zero extra segments? |

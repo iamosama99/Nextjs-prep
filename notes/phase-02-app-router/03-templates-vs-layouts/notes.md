@@ -1,5 +1,7 @@
 # Templates vs Layouts
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/03-templates-vs-layouts](http://localhost:3000/playground/phase-02-app-router/03-templates-vs-layouts)
+
 ## Quick Reference
 
 | | `layout.tsx` | `template.tsx` |

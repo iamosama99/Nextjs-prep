@@ -1,5 +1,7 @@
 # Route Groups `(folder)` for Organization
 
+> **Live demo:** `npm run dev` → [/playground/phase-02-app-router/04-route-groups](http://localhost:3000/playground/phase-02-app-router/04-route-groups)
+
 ## Quick Reference
 
 | Fact | Detail |
