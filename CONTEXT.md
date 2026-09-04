@@ -26,7 +26,8 @@ Topics are generated as individual markdown files, exactly like `React-prep`. Ea
 - Wants to connect the dots between concepts — each topic should feel like a logical step from the last
 - No caps on length, no caps on number of interview questions — go as deep as the topic warrants
 - Code examples: **TypeScript throughout** (this repo starts where `React-prep` phase 9 left off — no plain-JS phase)
-- Next.js version target: **Next.js 15+ (App Router, React 19)** — note Pages Router only where explicitly relevant (Phase 15)
+- Next.js version target: **whatever `package.json` actually has installed** (currently Next.js 16.3.x, React 19.2 canary) — note Pages Router only where explicitly relevant (Phase 15)
+- **Verify against the bundled docs before writing, every time.** Next.js itself ships `node_modules/next/dist/docs/` and an `AGENTS.md` warning that training data may be stale — treat that warning as directed at this project specifically. Before writing or revising any topic, grep the relevant page(s) under `node_modules/next/dist/docs/01-app/` rather than relying on remembered API shapes. This project got burned once already: Phase 1/2 topics were originally written from training-data assumptions (a "Next.js 15" mental model) and had to be corrected once a real app was scaffolded and Next.js 16 turned out to already be current — see the note at the bottom of this section.
 
 ---
 
@@ -184,9 +185,27 @@ Nextjs-prep/
 3. Some topics (build config, deployment, middleware matchers) are read/reason-about
    only and won't have a route — the notes file will say so
 
-**Note on scaffolding:** the `app/` Next.js project does not exist yet — it gets created
-as part of executing **Phase 1, Topic 2** (`create-next-app` anatomy). Don't scaffold it
-ahead of time; walking through the setup deliberately is itself part of the prep.
+**Scaffolding status:** the `app/` Next.js project now exists — scaffolded via
+`create-next-app` (TypeScript, App Router, no Tailwind yet — that's added deliberately in
+Phase 9, Topic 3 as a hands-on migration exercise — ESLint, ESLint Flat Config, ESLint's
+`typegen`-based route types on by default). Installed: **Next.js 16.3.4, React 19.2.8**.
+Playground routes are added retroactively for Phase 1–2 topics that benefit from a live
+demo, and by default from Phase 3 onward.
+
+**Known open item:** Phase 1 (topics 2, 5, 8) and Phase 2 (topics 2, 5, 7, 12) were written
+before the app was scaffolded, from a "Next.js 15" mental model, and contain specific
+inaccuracies now confirmed against the real Next.js 16 docs (missing `PageProps`/
+`LayoutProps`/`RouteContext` typed-route helpers from `next typegen`; the mandatory
+`default.tsx` build-failure requirement for parallel route slots; refined prefetching
+behavior). These need a correction pass. Phase 3's topic list (rendering & caching) was
+written around the Next.js 13–15 layered-cache mental model (Data Cache / Full Route Cache
+/ Router Cache) and must be re-verified against `node_modules/next/dist/docs/` — Next.js 16
+introduces a distinct **Cache Components** model (`cacheComponents` config, `cacheLife`/
+`cacheTag` now stable, new `updateTag`/`refresh()` APIs, `revalidateTag` now requires a
+second argument) that may not map cleanly onto the originally planned topic list. Phase 7
+(middleware) also needs revisiting: `middleware.ts` is deprecated in favor of `proxy.ts` in
+Next.js 16 (edge runtime is not supported in `proxy`). Do not write or fix these without
+re-reading the relevant bundled docs first.
 
 ---
 
