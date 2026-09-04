@@ -211,13 +211,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | File-based routing fundamentals (`page.tsx`, `layout.tsx`) | `notes/phase-02-app-router/01-file-based-routing/notes.md` | 👉 |
-| 2 | Root layout & nested layouts | `notes/phase-02-app-router/02-nested-layouts/notes.md` | ⬜ |
-| 3 | Templates vs layouts | `notes/phase-02-app-router/03-templates-vs-layouts/notes.md` | ⬜ |
-| 4 | Route groups `(folder)` for organization | `notes/phase-02-app-router/04-route-groups/notes.md` | ⬜ |
-| 5 | Dynamic segments `[id]` | `notes/phase-02-app-router/05-dynamic-segments/notes.md` | ⬜ |
-| 6 | Catch-all & optional catch-all `[...slug]` / `[[...slug]]` | `notes/phase-02-app-router/06-catch-all-segments/notes.md` | ⬜ |
-| 7 | Parallel routes `@slot` | `notes/phase-02-app-router/07-parallel-routes/notes.md` | ⬜ |
+| 1 | File-based routing fundamentals (`page.tsx`, `layout.tsx`) | `notes/phase-02-app-router/01-file-based-routing/notes.md` | ✅ |
+| 2 | Root layout & nested layouts | `notes/phase-02-app-router/02-nested-layouts/notes.md` | ✅ |
+| 3 | Templates vs layouts | `notes/phase-02-app-router/03-templates-vs-layouts/notes.md` | ✅ |
+| 4 | Route groups `(folder)` for organization | `notes/phase-02-app-router/04-route-groups/notes.md` | ✅ |
+| 5 | Dynamic segments `[id]` | `notes/phase-02-app-router/05-dynamic-segments/notes.md` | ✅ |
+| 6 | Catch-all & optional catch-all `[...slug]` / `[[...slug]]` | `notes/phase-02-app-router/06-catch-all-segments/notes.md` | ✅ |
+| 7 | Parallel routes `@slot` | `notes/phase-02-app-router/07-parallel-routes/notes.md` | 👉 |
 | 8 | Intercepting routes `(.)/(..)/(...)` | `notes/phase-02-app-router/08-intercepting-routes/notes.md` | ⬜ |
 | 9 | `loading.tsx` & instant loading states | `notes/phase-02-app-router/09-loading-ui/notes.md` | ⬜ |
 | 10 | `error.tsx` & error boundaries per route segment | `notes/phase-02-app-router/10-error-boundaries/notes.md` | ⬜ |
