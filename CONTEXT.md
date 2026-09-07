@@ -192,12 +192,14 @@ Phase 9, Topic 3 as a hands-on migration exercise — ESLint, ESLint Flat Config
 Playground routes are now live under `app/playground/` for every Phase 2 topic (12/12 —
 routing is inherently visual, so this phase got full coverage), the three genuinely
 demonstrable Phase 1 topics (`next.config` redirects/rewrites, env var public/server-only
-visibility, the `public/` folder), and 9 of Phase 3's 12 topics (all but Topics 9 and 11,
+visibility, the `public/` folder), 9 of Phase 3's 12 topics (all but Topics 9 and 11,
 which narrate behavior already demonstrated in Topics 8 and 1–10 respectively, and Topic 12,
-which is tooling/diagnostics-focused). Each topic's `notes.md` links its demo at the top. The
-rest of Phase 1 (why-Next.js, create-next-app anatomy, App-vs-Pages orientation, TypeScript
-setup, versioning) stays notes-only by design — nothing to click through. From Phase 3
-onward, add a playground route by default for any topic with observable runtime behavior.
+which is tooling/diagnostics-focused), and 9 of Phase 4's 10 topics (all but Topic 10, a
+synthesis/checklist topic covering no new mechanism). Each topic's `notes.md` links its demo
+at the top. The rest of Phase 1 (why-Next.js, create-next-app anatomy, App-vs-Pages
+orientation, TypeScript setup, versioning) stays notes-only by design — nothing to click
+through. From Phase 3 onward, add a playground route by default for any topic with
+observable runtime behavior.
 
 **Resolved:** Phase 1 (topics 5, 8) and Phase 2 (topics 2, 5, 6, 7, 12) have been corrected
 against the real Next.js 16 docs — `PageProps`/`LayoutProps`/`RouteContext` typed-route
@@ -217,6 +219,18 @@ playground routes that read `params` unguarded (`05-dynamic-segments`,
 `06-catch-all-segments` ×2, `08-intercepting-routes` ×2, `11-not-found`) were updated to
 push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
 cleanly — this is a mechanical compatibility fix, not a content change to those topics.
+
+**Resolved:** Phase 4 (10/10 topics) is complete — Server Components & Data Fetching, scoped
+to what's actually Next.js-specific per this repo's relationship to `React-prep` (which
+already covers RSC fundamentals; this phase never re-derives them). Four topics (2, 7, 8, 9)
+each include a deliberately-triggered build-error exercise, verified for real and then
+reverted: the compound-component gotcha (`Menu.Item` becoming `undefined`), a `server-only`
+import crossing into a Client Component, a class instance passed as a prop across the
+boundary, and an unwrapped client-only third-party component imported into a Server
+Component. Topic 6 (streaming) deliberately did **not** use `curl` to verify chunk timing —
+its own content explains why `curl`'s buffering makes it unreliable for that — and used a
+raw `fetch`/`getReader()` script instead, confirming two sibling Suspense boundaries streamed
+independently at ~512ms and ~2008ms for 500ms/2000ms simulated delays.
 
 **Resolved:** Phase 3 (12/12 topics) is complete. Every live-demo claim across Topics 1–10
 was verified against a real running server (`curl` for server-rendered behavior; `next build`
@@ -308,13 +322,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 7 | `server-only` / `client-only` packages | `notes/phase-04-server-components-data/07-server-only-client-only/notes.md` | ✅ |
 | 8 | Passing data across the server/client boundary (serialization limits) | `notes/phase-04-server-components-data/08-serialization-boundary/notes.md` | ✅ |
 | 9 | Wrapping third-party client-only libraries | `notes/phase-04-server-components-data/09-wrapping-third-party-libs/notes.md` | ✅ |
-| 10 | Common data-fetching antipatterns interviewers probe for | `notes/phase-04-server-components-data/10-data-fetching-antipatterns/notes.md` | 👉 |
+| 10 | Common data-fetching antipatterns interviewers probe for | `notes/phase-04-server-components-data/10-data-fetching-antipatterns/notes.md` | ✅ |
 
 ### Phase 5 — Server Actions & Mutations (8 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Defining Server Actions (`'use server'`) | `notes/phase-05-server-actions/01-defining-server-actions/notes.md` | ⬜ |
+| 1 | Defining Server Actions (`'use server'`) | `notes/phase-05-server-actions/01-defining-server-actions/notes.md` | 👉 |
 | 2 | Calling Server Actions from forms | `notes/phase-05-server-actions/02-server-actions-in-forms/notes.md` | ⬜ |
 | 3 | `useFormStatus` & pending states | `notes/phase-05-server-actions/03-use-form-status/notes.md` | ⬜ |
 | 4 | `useActionState` (form state + validation errors) | `notes/phase-05-server-actions/04-use-action-state/notes.md` | ⬜ |
