@@ -267,8 +267,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | # | Topic | File | Status |
 |---|-------|------|--------|
 | 1 | Static and dynamic as a spectrum — Partial Prerendering & the static shell | `notes/phase-03-rendering-caching/01-rendering-as-a-spectrum/notes.md` | ✅ |
-| 2 | `<Suspense>` as the dynamic boundary — runtime APIs & streaming uncached data | `notes/phase-03-rendering-caching/02-suspense-dynamic-boundary/notes.md` | 👉 |
-| 3 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/03-request-memoization/notes.md` | ⬜ |
+| 2 | `<Suspense>` as the dynamic boundary — runtime APIs & streaming uncached data | `notes/phase-03-rendering-caching/02-suspense-dynamic-boundary/notes.md` | ✅ |
+| 3 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/03-request-memoization/notes.md` | 👉 |
 | 4 | React's `cache()` — per-request memoization for non-`fetch` data | `notes/phase-03-rendering-caching/04-react-cache-function/notes.md` | ⬜ |
 | 5 | The `"use cache"` directive — data-level & UI-level caching | `notes/phase-03-rendering-caching/05-use-cache-directive/notes.md` | ⬜ |
 | 6 | `cacheLife` — time-based revalidation & cache profiles | `notes/phase-03-rendering-caching/06-cachelife-time-based-revalidation/notes.md` | ⬜ |

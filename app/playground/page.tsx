@@ -30,6 +30,7 @@ const demos = [
     phase: 'Phase 3 — Rendering Model & Caching',
     items: [
       { href: '/playground/phase-03-rendering-caching/01-rendering-as-a-spectrum', label: '01. Static and dynamic as a spectrum' },
+      { href: '/playground/phase-03-rendering-caching/02-suspense-dynamic-boundary', label: '02. <Suspense> as the dynamic boundary' },
     ],
   },
 ];
