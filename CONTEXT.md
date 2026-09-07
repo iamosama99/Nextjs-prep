@@ -270,8 +270,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 2 | `<Suspense>` as the dynamic boundary — runtime APIs & streaming uncached data | `notes/phase-03-rendering-caching/02-suspense-dynamic-boundary/notes.md` | ✅ |
 | 3 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/03-request-memoization/notes.md` | ✅ |
 | 4 | React's `cache()` — per-request memoization for non-`fetch` data | `notes/phase-03-rendering-caching/04-react-cache-function/notes.md` | ✅ |
-| 5 | The `"use cache"` directive — data-level & UI-level caching | `notes/phase-03-rendering-caching/05-use-cache-directive/notes.md` | 👉 |
-| 6 | `cacheLife` — time-based revalidation & cache profiles | `notes/phase-03-rendering-caching/06-cachelife-time-based-revalidation/notes.md` | ⬜ |
+| 5 | The `"use cache"` directive — data-level & UI-level caching | `notes/phase-03-rendering-caching/05-use-cache-directive/notes.md` | ✅ |
+| 6 | `cacheLife` — time-based revalidation & cache profiles | `notes/phase-03-rendering-caching/06-cachelife-time-based-revalidation/notes.md` | 👉 |
 | 7 | `cacheTag`, `revalidateTag` & `updateTag` — on-demand revalidation | `notes/phase-03-rendering-caching/07-cachetag-on-demand-revalidation/notes.md` | ⬜ |
 | 8 | `generateStaticParams` & prerendering dynamic segments | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | ⬜ |
 | 9 | ISR with Cache Components — the App Shell upgrade flow | `notes/phase-03-rendering-caching/09-isr-cache-components/notes.md` | ⬜ |

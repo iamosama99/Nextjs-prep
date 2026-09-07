@@ -33,6 +33,7 @@ const demos = [
       { href: '/playground/phase-03-rendering-caching/02-suspense-dynamic-boundary', label: '02. <Suspense> as the dynamic boundary' },
       { href: '/playground/phase-03-rendering-caching/03-request-memoization', label: '03. Request Memoization' },
       { href: '/playground/phase-03-rendering-caching/04-react-cache-function', label: "04. React's cache() function" },
+      { href: '/playground/phase-03-rendering-caching/05-use-cache-directive', label: '05. The "use cache" directive' },
     ],
   },
 ];
