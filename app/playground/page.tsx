@@ -26,6 +26,12 @@ const demos = [
       { href: '/playground/phase-02-app-router/12-linking-and-navigating', label: '12. Linking & navigating' },
     ],
   },
+  {
+    phase: 'Phase 3 — Rendering Model & Caching',
+    items: [
+      { href: '/playground/phase-03-rendering-caching/01-rendering-as-a-spectrum', label: '01. Static and dynamic as a spectrum' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
