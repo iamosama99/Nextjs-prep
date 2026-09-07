@@ -47,6 +47,7 @@ const demos = [
       { href: '/playground/phase-04-server-components-data/02-use-client-boundary', label: "02. The 'use client' boundary in practice" },
       { href: '/playground/phase-04-server-components-data/03-composing-server-client', label: '03. Composing Server & Client Components' },
       { href: '/playground/phase-04-server-components-data/04-async-server-components', label: '04. Fetching data directly in Server Components' },
+      { href: '/playground/phase-04-server-components-data/05-parallel-vs-waterfall-fetching', label: '05. Parallel fetching vs sequential waterfalls' },
     ],
   },
 ];
