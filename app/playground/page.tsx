@@ -36,6 +36,7 @@ const demos = [
       { href: '/playground/phase-03-rendering-caching/05-use-cache-directive', label: '05. The "use cache" directive' },
       { href: '/playground/phase-03-rendering-caching/06-cachelife-time-based-revalidation', label: '06. cacheLife — time-based revalidation' },
       { href: '/playground/phase-03-rendering-caching/07-cachetag-on-demand-revalidation', label: '07. cacheTag, revalidateTag & updateTag' },
+      { href: '/playground/phase-03-rendering-caching/08-generate-static-params', label: '08. generateStaticParams' },
     ],
   },
 ];
