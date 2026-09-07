@@ -190,9 +190,11 @@ Nextjs-prep/
 Phase 9, Topic 3 as a hands-on migration exercise — ESLint, ESLint Flat Config, ESLint's
 `typegen`-based route types on by default). Installed: **Next.js 16.3.4, React 19.2.8**.
 Playground routes are now live under `app/playground/` for every Phase 2 topic (12/12 —
-routing is inherently visual, so this phase got full coverage) and the three genuinely
+routing is inherently visual, so this phase got full coverage), the three genuinely
 demonstrable Phase 1 topics (`next.config` redirects/rewrites, env var public/server-only
-visibility, the `public/` folder). Each topic's `notes.md` links its demo at the top. The
+visibility, the `public/` folder), and 9 of Phase 3's 12 topics (all but Topics 9 and 11,
+which narrate behavior already demonstrated in Topics 8 and 1–10 respectively, and Topic 12,
+which is tooling/diagnostics-focused). Each topic's `notes.md` links its demo at the top. The
 rest of Phase 1 (why-Next.js, create-next-app anatomy, App-vs-Pages orientation, TypeScript
 setup, versioning) stays notes-only by design — nothing to click through. From Phase 3
 onward, add a playground route by default for any topic with observable runtime behavior.
@@ -215,6 +217,20 @@ playground routes that read `params` unguarded (`05-dynamic-segments`,
 `06-catch-all-segments` ×2, `08-intercepting-routes` ×2, `11-not-found`) were updated to
 push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
 cleanly — this is a mechanical compatibility fix, not a content change to those topics.
+
+**Resolved:** Phase 3 (12/12 topics) is complete. Every live-demo claim across Topics 1–10
+was verified against a real running server (`curl` for server-rendered behavior; `next build`
+output for static/dynamic/PPR classification) rather than assumed from documentation —
+including catching and fixing two cases (Topics 3 and 4's counters) where a demo intended to
+prove per-request behavior initially prerendered as static (`○`) at build time and had to be
+forced dynamic. One genuine documentation-vs-observed-behavior discrepancy was found and
+written up honestly in Topic 6: a `"use cache"` entry short-lived enough to be excluded from
+the static shell blocks on regeneration when its revalidate window is crossed, rather than
+serving stale content instantly the way the docs' general stale-while-revalidate description
+implies — because a dynamic hole has no previously-built artifact to fall back to (Topic 9's
+ISR case is where the classic instant-stale-then-swap story applies cleanly instead). Topic
+10's `<Activity>`/state-preservation demo was built and reasoned through carefully but not
+click-verified in a real browser — flagged explicitly rather than claimed as confirmed.
 The revised 12-topic list below reflects the new model as the primary teaching target, with
 one dedicated topic (#11) comparing it against the pre-16 model for interview purposes
 (real-world codebases and Pages-Router-adjacent knowledge still reference `dynamic`/
@@ -277,13 +293,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 9 | ISR with Cache Components — the App Shell upgrade flow | `notes/phase-03-rendering-caching/09-isr-cache-components/notes.md` | ✅ |
 | 10 | The Router Cache, prefetching & `<Activity>` state preservation | `notes/phase-03-rendering-caching/10-router-cache-prefetching-activity/notes.md` | ✅ |
 | 11 | Cache Components vs the Previous Model — migration & interview comparison | `notes/phase-03-rendering-caching/11-cache-components-vs-previous-model/notes.md` | ✅ |
-| 12 | Debugging cache & rendering behavior (dev overlay insights, instant-nav validation) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | 👉 |
+| 12 | Debugging cache & rendering behavior (dev overlay insights, instant-nav validation) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | ✅ |
 
 ### Phase 4 — Server Components & Data Fetching (10 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Server Components by default — what runs where in Next.js | `notes/phase-04-server-components-data/01-server-components-by-default/notes.md` | ⬜ |
+| 1 | Server Components by default — what runs where in Next.js | `notes/phase-04-server-components-data/01-server-components-by-default/notes.md` | 👉 |
 | 2 | The Client Component boundary (`'use client'`) in practice | `notes/phase-04-server-components-data/02-use-client-boundary/notes.md` | ⬜ |
 | 3 | Composing server & client components (children pattern) | `notes/phase-04-server-components-data/03-composing-server-client/notes.md` | ⬜ |
 | 4 | Fetching data directly in Server Components (async components) | `notes/phase-04-server-components-data/04-async-server-components/notes.md` | ⬜ |
