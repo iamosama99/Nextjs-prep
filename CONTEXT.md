@@ -276,8 +276,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 8 | `generateStaticParams` & prerendering dynamic segments | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | ✅ |
 | 9 | ISR with Cache Components — the App Shell upgrade flow | `notes/phase-03-rendering-caching/09-isr-cache-components/notes.md` | ✅ |
 | 10 | The Router Cache, prefetching & `<Activity>` state preservation | `notes/phase-03-rendering-caching/10-router-cache-prefetching-activity/notes.md` | ✅ |
-| 11 | Cache Components vs the Previous Model — migration & interview comparison | `notes/phase-03-rendering-caching/11-cache-components-vs-previous-model/notes.md` | 👉 |
-| 12 | Debugging cache & rendering behavior (dev overlay insights, instant-nav validation) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | ⬜ |
+| 11 | Cache Components vs the Previous Model — migration & interview comparison | `notes/phase-03-rendering-caching/11-cache-components-vs-previous-model/notes.md` | ✅ |
+| 12 | Debugging cache & rendering behavior (dev overlay insights, instant-nav validation) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | 👉 |
 
 ### Phase 4 — Server Components & Data Fetching (10 topics)
 
