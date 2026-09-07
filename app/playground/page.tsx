@@ -44,6 +44,7 @@ const demos = [
     phase: 'Phase 4 — Server Components & Data Fetching',
     items: [
       { href: '/playground/phase-04-server-components-data/01-server-components-by-default', label: '01. Server Components by default' },
+      { href: '/playground/phase-04-server-components-data/02-use-client-boundary', label: "02. The 'use client' boundary in practice" },
     ],
   },
 ];
