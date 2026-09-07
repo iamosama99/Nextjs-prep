@@ -204,16 +204,24 @@ helpers now covered, the named-slot `default.tsx` mandatory-error requirement co
 prefetching behavior updated (skip-without-`loading.tsx`, layout dedup, `useLinkStatus`,
 `prefetch={false}`/hover-only), and the React 19.2/Node 20.9+ version facts added.
 
-**Still open:** Phase 3's topic list (rendering & caching) was written around the Next.js
-13–15 layered-cache mental model (Data Cache / Full Route Cache / Router Cache) and must be
-re-scoped against `node_modules/next/dist/docs/` before writing it — Next.js 16 introduces a
-distinct **Cache Components** model (`cacheComponents` config, `cacheLife`/`cacheTag` now
-stable, new `updateTag`/`refresh()` APIs, `revalidateTag` now requires a second argument)
-that likely doesn't map cleanly onto the originally planned 12-topic list. Phase 7
-(middleware) also needs revisiting before it's written: `middleware.ts` is deprecated in
-favor of `proxy.ts` in Next.js 16 (edge runtime is not supported in `proxy`). Do not write
-either phase without re-reading the relevant bundled docs first and, ideally, revising
-their planned topic lists in the tracker below to match current reality.
+**Resolved:** Phase 3 (rendering & caching) has been re-scoped against
+`node_modules/next/dist/docs/01-app/` for Next.js 16's **Cache Components** model, which
+replaces the old Data Cache / Full Route Cache / Router Cache mental model entirely when
+`cacheComponents: true` is set. **`cacheComponents: true` is now enabled in `next.config.ts`**
+for this project (verified with a clean `npm run build`) — this makes Partial Prerendering
+the default rendering model, requires runtime-API/uncached-data access to sit behind
+`<Suspense>`, and enables `"use cache"`, `cacheLife`, `cacheTag`, `updateTag`. Six Phase 2
+playground routes that read `params` unguarded (`05-dynamic-segments`,
+`06-catch-all-segments` ×2, `08-intercepting-routes` ×2, `11-not-found`) were updated to
+push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
+cleanly — this is a mechanical compatibility fix, not a content change to those topics.
+The revised 12-topic list below reflects the new model as the primary teaching target, with
+one dedicated topic (#11) comparing it against the pre-16 model for interview purposes
+(real-world codebases and Pages-Router-adjacent knowledge still reference `dynamic`/
+`revalidate`/`fetchCache`). Phase 7 (middleware) still needs the same re-scoping treatment
+before it's written: `middleware.ts` is deprecated in favor of `proxy.ts` in Next.js 16 (edge
+runtime is not supported in `proxy`). Do not write it without re-reading the bundled docs
+first and revising its planned topic list to match current reality.
 
 ---
 
@@ -254,21 +262,22 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 ### Phase 3 — Rendering Model & Caching (12 topics)
 
 > The single highest-leverage phase for senior interviews. Slow down here.
+> Re-scoped for Next.js 16's Cache Components model — see the "Resolved" note above.
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Static vs dynamic rendering — how Next decides | `notes/phase-03-rendering-caching/01-static-vs-dynamic-rendering/notes.md` | 👉 |
-| 2 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/02-request-memoization/notes.md` | ⬜ |
-| 3 | Data Cache (`fetch` cache, `force-cache` / `no-store`) | `notes/phase-03-rendering-caching/03-data-cache/notes.md` | ⬜ |
-| 4 | Full Route Cache (build-time HTML/RSC payload cache) | `notes/phase-03-rendering-caching/04-full-route-cache/notes.md` | ⬜ |
-| 5 | Router Cache (client-side prefetch cache) | `notes/phase-03-rendering-caching/05-router-cache/notes.md` | ⬜ |
-| 6 | Time-based revalidation (`next: { revalidate }`) | `notes/phase-03-rendering-caching/06-time-based-revalidation/notes.md` | ⬜ |
-| 7 | On-demand revalidation (`revalidatePath`, `revalidateTag`) | `notes/phase-03-rendering-caching/07-on-demand-revalidation/notes.md` | ⬜ |
-| 8 | `generateStaticParams` & `dynamicParams` | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | ⬜ |
-| 9 | ISR in the App Router | `notes/phase-03-rendering-caching/09-isr-app-router/notes.md` | ⬜ |
-| 10 | Route segment config (`force-dynamic` / `force-static` / etc.) | `notes/phase-03-rendering-caching/10-route-segment-config/notes.md` | ⬜ |
-| 11 | React's `cache()` & per-request memoization | `notes/phase-03-rendering-caching/11-react-cache-function/notes.md` | ⬜ |
-| 12 | Debugging cache behavior (stale/not-stale interview scenarios) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | ⬜ |
+| 1 | Static and dynamic as a spectrum — Partial Prerendering & the static shell | `notes/phase-03-rendering-caching/01-rendering-as-a-spectrum/notes.md` | 👉 |
+| 2 | `<Suspense>` as the dynamic boundary — runtime APIs & streaming uncached data | `notes/phase-03-rendering-caching/02-suspense-dynamic-boundary/notes.md` | ⬜ |
+| 3 | Request Memoization (`fetch` dedupe within a render) | `notes/phase-03-rendering-caching/03-request-memoization/notes.md` | ⬜ |
+| 4 | React's `cache()` — per-request memoization for non-`fetch` data | `notes/phase-03-rendering-caching/04-react-cache-function/notes.md` | ⬜ |
+| 5 | The `"use cache"` directive — data-level & UI-level caching | `notes/phase-03-rendering-caching/05-use-cache-directive/notes.md` | ⬜ |
+| 6 | `cacheLife` — time-based revalidation & cache profiles | `notes/phase-03-rendering-caching/06-cachelife-time-based-revalidation/notes.md` | ⬜ |
+| 7 | `cacheTag`, `revalidateTag` & `updateTag` — on-demand revalidation | `notes/phase-03-rendering-caching/07-cachetag-on-demand-revalidation/notes.md` | ⬜ |
+| 8 | `generateStaticParams` & prerendering dynamic segments | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | ⬜ |
+| 9 | ISR with Cache Components — the App Shell upgrade flow | `notes/phase-03-rendering-caching/09-isr-cache-components/notes.md` | ⬜ |
+| 10 | The Router Cache, prefetching & `<Activity>` state preservation | `notes/phase-03-rendering-caching/10-router-cache-prefetching-activity/notes.md` | ⬜ |
+| 11 | Cache Components vs the Previous Model — migration & interview comparison | `notes/phase-03-rendering-caching/11-cache-components-vs-previous-model/notes.md` | ⬜ |
+| 12 | Debugging cache & rendering behavior (dev overlay insights, instant-nav validation) | `notes/phase-03-rendering-caching/12-debugging-cache-behavior/notes.md` | ⬜ |
 
 ### Phase 4 — Server Components & Data Fetching (10 topics)
 

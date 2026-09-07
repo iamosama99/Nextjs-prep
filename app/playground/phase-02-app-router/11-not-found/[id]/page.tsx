@@ -1,11 +1,22 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 
 const knownIds = new Set(['1', '2', '3']);
 
-export default async function ItemPage(
+export default function ItemPage(
   props: PageProps<'/playground/phase-02-app-router/11-not-found/[id]'>
 ) {
-  const { id } = await props.params;
+  return (
+    <Suspense fallback={<p>Looking up item...</p>}>
+      <ItemLookup params={props.params} />
+    </Suspense>
+  );
+}
+
+async function ItemLookup({
+  params,
+}: Pick<PageProps<'/playground/phase-02-app-router/11-not-found/[id]'>, 'params'>) {
+  const { id } = await params;
 
   if (!knownIds.has(id)) {
     notFound(); // throws internally -- nothing after this line runs

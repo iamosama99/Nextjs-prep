@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Enables Cache Components (the `use cache` directive, cacheLife/cacheTag, and
+  // Partial Prerendering as the default rendering model) for Phase 3 onward.
+  // See notes/phase-03-rendering-caching/01-rendering-as-a-spectrum/notes.md.
+  cacheComponents: true,
   // Demo rules for notes/phase-01-fundamentals/04-next-config-essentials.
   // Evaluated once at build/startup, not per request (see the notes for why that matters).
   async redirects() {
