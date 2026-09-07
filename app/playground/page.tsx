@@ -51,6 +51,7 @@ const demos = [
       { href: '/playground/phase-04-server-components-data/06-streaming-with-suspense', label: '06. Streaming with Suspense boundaries' },
       { href: '/playground/phase-04-server-components-data/07-server-only-client-only', label: '07. server-only / client-only packages' },
       { href: '/playground/phase-04-server-components-data/08-serialization-boundary', label: '08. Passing data across the server/client boundary' },
+      { href: '/playground/phase-04-server-components-data/09-wrapping-third-party-libs', label: '09. Wrapping third-party client-only libraries' },
     ],
   },
 ];
