@@ -34,6 +34,7 @@ const demos = [
       { href: '/playground/phase-03-rendering-caching/03-request-memoization', label: '03. Request Memoization' },
       { href: '/playground/phase-03-rendering-caching/04-react-cache-function', label: "04. React's cache() function" },
       { href: '/playground/phase-03-rendering-caching/05-use-cache-directive', label: '05. The "use cache" directive' },
+      { href: '/playground/phase-03-rendering-caching/06-cachelife-time-based-revalidation', label: '06. cacheLife — time-based revalidation' },
     ],
   },
 ];
