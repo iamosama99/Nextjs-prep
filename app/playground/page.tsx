@@ -40,6 +40,12 @@ const demos = [
       { href: '/playground/phase-03-rendering-caching/10-router-cache-prefetching-activity', label: '10. Router Cache, prefetching & <Activity>' },
     ],
   },
+  {
+    phase: 'Phase 4 — Server Components & Data Fetching',
+    items: [
+      { href: '/playground/phase-04-server-components-data/01-server-components-by-default', label: '01. Server Components by default' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
