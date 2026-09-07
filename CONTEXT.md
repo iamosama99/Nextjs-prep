@@ -302,8 +302,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 1 | Server Components by default — what runs where in Next.js | `notes/phase-04-server-components-data/01-server-components-by-default/notes.md` | ✅ |
 | 2 | The Client Component boundary (`'use client'`) in practice | `notes/phase-04-server-components-data/02-use-client-boundary/notes.md` | ✅ |
 | 3 | Composing server & client components (children pattern) | `notes/phase-04-server-components-data/03-composing-server-client/notes.md` | ✅ |
-| 4 | Fetching data directly in Server Components (async components) | `notes/phase-04-server-components-data/04-async-server-components/notes.md` | 👉 |
-| 5 | Parallel data fetching vs sequential waterfalls | `notes/phase-04-server-components-data/05-parallel-vs-waterfall-fetching/notes.md` | ⬜ |
+| 4 | Fetching data directly in Server Components (async components) | `notes/phase-04-server-components-data/04-async-server-components/notes.md` | ✅ |
+| 5 | Parallel data fetching vs sequential waterfalls | `notes/phase-04-server-components-data/05-parallel-vs-waterfall-fetching/notes.md` | 👉 |
 | 6 | Streaming with Suspense boundaries in Next.js | `notes/phase-04-server-components-data/06-streaming-with-suspense/notes.md` | ⬜ |
 | 7 | `server-only` / `client-only` packages | `notes/phase-04-server-components-data/07-server-only-client-only/notes.md` | ⬜ |
 | 8 | Passing data across the server/client boundary (serialization limits) | `notes/phase-04-server-components-data/08-serialization-boundary/notes.md` | ⬜ |
