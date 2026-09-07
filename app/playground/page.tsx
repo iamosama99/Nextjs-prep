@@ -32,6 +32,7 @@ const demos = [
       { href: '/playground/phase-03-rendering-caching/01-rendering-as-a-spectrum', label: '01. Static and dynamic as a spectrum' },
       { href: '/playground/phase-03-rendering-caching/02-suspense-dynamic-boundary', label: '02. <Suspense> as the dynamic boundary' },
       { href: '/playground/phase-03-rendering-caching/03-request-memoization', label: '03. Request Memoization' },
+      { href: '/playground/phase-03-rendering-caching/04-react-cache-function', label: "04. React's cache() function" },
     ],
   },
 ];
