@@ -272,8 +272,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 4 | React's `cache()` — per-request memoization for non-`fetch` data | `notes/phase-03-rendering-caching/04-react-cache-function/notes.md` | ✅ |
 | 5 | The `"use cache"` directive — data-level & UI-level caching | `notes/phase-03-rendering-caching/05-use-cache-directive/notes.md` | ✅ |
 | 6 | `cacheLife` — time-based revalidation & cache profiles | `notes/phase-03-rendering-caching/06-cachelife-time-based-revalidation/notes.md` | ✅ |
-| 7 | `cacheTag`, `revalidateTag` & `updateTag` — on-demand revalidation | `notes/phase-03-rendering-caching/07-cachetag-on-demand-revalidation/notes.md` | 👉 |
-| 8 | `generateStaticParams` & prerendering dynamic segments | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | ⬜ |
+| 7 | `cacheTag`, `revalidateTag` & `updateTag` — on-demand revalidation | `notes/phase-03-rendering-caching/07-cachetag-on-demand-revalidation/notes.md` | ✅ |
+| 8 | `generateStaticParams` & prerendering dynamic segments | `notes/phase-03-rendering-caching/08-generate-static-params/notes.md` | 👉 |
 | 9 | ISR with Cache Components — the App Shell upgrade flow | `notes/phase-03-rendering-caching/09-isr-cache-components/notes.md` | ⬜ |
 | 10 | The Router Cache, prefetching & `<Activity>` state preservation | `notes/phase-03-rendering-caching/10-router-cache-prefetching-activity/notes.md` | ⬜ |
 | 11 | Cache Components vs the Previous Model — migration & interview comparison | `notes/phase-03-rendering-caching/11-cache-components-vs-previous-model/notes.md` | ⬜ |
