@@ -50,6 +50,7 @@ const demos = [
       { href: '/playground/phase-04-server-components-data/05-parallel-vs-waterfall-fetching', label: '05. Parallel fetching vs sequential waterfalls' },
       { href: '/playground/phase-04-server-components-data/06-streaming-with-suspense', label: '06. Streaming with Suspense boundaries' },
       { href: '/playground/phase-04-server-components-data/07-server-only-client-only', label: '07. server-only / client-only packages' },
+      { href: '/playground/phase-04-server-components-data/08-serialization-boundary', label: '08. Passing data across the server/client boundary' },
     ],
   },
 ];
