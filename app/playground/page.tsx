@@ -78,6 +78,12 @@ const demos = [
       { href: '/playground/phase-06-route-handlers/06-cors-and-webhooks', label: '06. CORS & webhooks in Route Handlers' },
     ],
   },
+  {
+    phase: 'Phase 7 — Proxy (formerly Middleware) & the Edge Runtime',
+    items: [
+      { href: '/playground/phase-07-proxy-edge/01-proxy-basics', label: '01. Proxy basics & the matcher config' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {

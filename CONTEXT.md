@@ -172,7 +172,7 @@ Nextjs-prep/
 │       ├── phase-06-route-handlers/
 │       │   └── 01-basics/route.ts
 │       └── ...                   ← one route per topic that needs a live demo (not all do)
-├── middleware.ts                 ← lives at root per Next.js convention (Phase 7 topics touch this)
+├── proxy.ts                       ← lives at root per Next.js convention (Phase 7 topics touch this; renamed from middleware.ts in Next.js 16)
 ├── next.config.ts
 ├── package.json
 └── tsconfig.json
@@ -286,10 +286,14 @@ click-verified in a real browser — flagged explicitly rather than claimed as c
 The revised 12-topic list below reflects the new model as the primary teaching target, with
 one dedicated topic (#11) comparing it against the pre-16 model for interview purposes
 (real-world codebases and Pages-Router-adjacent knowledge still reference `dynamic`/
-`revalidate`/`fetchCache`). Phase 7 (middleware) still needs the same re-scoping treatment
-before it's written: `middleware.ts` is deprecated in favor of `proxy.ts` in Next.js 16 (edge
-runtime is not supported in `proxy`). Do not write it without re-reading the bundled docs
-first and revising its planned topic list to match current reality.
+`revalidate`/`fetchCache`).
+
+**Resolved:** Phase 7 has been re-scoped for Next.js 16's Proxy/Edge Runtime reality — see the
+note above Phase 7's table. Findings beyond the `middleware.ts` → `proxy.ts` rename: the Edge
+Runtime itself is deprecated (not just unavailable in Proxy), `proxy` defaults to and is locked to
+the Node.js runtime (`runtime` config throws if set in `proxy.ts`), and `NextRequest`'s `geo`/`ip`
+properties were removed in v15 (values were always hosting-provider-supplied; current guidance is
+reading provider-specific headers directly, or `@vercel/functions` on Vercel).
 
 ---
 
@@ -387,17 +391,27 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 6 | CORS & webhooks in Route Handlers | `notes/phase-06-route-handlers/06-cors-and-webhooks/notes.md` | ✅ |
 | 7 | Route Handlers vs Server Actions — when to use which | `notes/phase-06-route-handlers/07-route-handlers-vs-server-actions/notes.md` | ✅ |
 
-### Phase 7 — Middleware & Edge Runtime (7 topics)
+### Phase 7 — Proxy (formerly Middleware) & the Edge Runtime (7 topics)
+
+> **Re-scoped for Next.js 16** — see the "Resolved" note below. `middleware.ts` is deprecated and
+> renamed to `proxy.ts` (functionality unchanged); the Edge Runtime itself is deprecated, and `proxy`
+> now defaults to (and is locked to) the Node.js runtime — the `runtime` config option isn't even
+> available in `proxy.ts` and throws if set. The original 7-topic list assumed a live Edge-vs-Node.js
+> choice for middleware that no longer exists, and `NextRequest`'s `geo`/`ip` properties (Topic 4) were
+> removed back in v15. The list below reflects current reality; topic count held at 7 by merging the
+> old Edge-vs-Node and per-route-runtime topics into one (Topic 5) and adding a new topic on the
+> middleware→proxy migration itself (Topic 6), which is substantial and current enough to warrant its
+> own treatment.
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Middleware basics & the `matcher` config | `notes/phase-07-middleware-edge/01-middleware-basics/notes.md` | 👉 |
-| 2 | Rewrites, redirects, and response headers from middleware | `notes/phase-07-middleware-edge/02-rewrites-redirects-headers/notes.md` | ⬜ |
-| 3 | Auth checks in middleware (cookie/session inspection) | `notes/phase-07-middleware-edge/03-auth-checks-in-middleware/notes.md` | ⬜ |
-| 4 | Geolocation & A/B testing patterns | `notes/phase-07-middleware-edge/04-geolocation-ab-testing/notes.md` | ⬜ |
-| 5 | Edge runtime vs Node.js runtime — constraints & tradeoffs | `notes/phase-07-middleware-edge/05-edge-vs-node-runtime/notes.md` | ⬜ |
-| 6 | Per-route runtime selection (`export const runtime`) | `notes/phase-07-middleware-edge/06-per-route-runtime-selection/notes.md` | ⬜ |
-| 7 | Middleware performance & execution-order gotchas | `notes/phase-07-middleware-edge/07-middleware-performance-gotchas/notes.md` | ⬜ |
+| 1 | Proxy basics & the `matcher` config | `notes/phase-07-proxy-edge/01-proxy-basics/notes.md` | ✅ |
+| 2 | Rewrites, redirects, and headers from Proxy | `notes/phase-07-proxy-edge/02-rewrites-redirects-headers/notes.md` | 👉 |
+| 3 | Auth checks in Proxy (optimistic vs. secure checks) | `notes/phase-07-proxy-edge/03-auth-checks-in-proxy/notes.md` | ⬜ |
+| 4 | Geolocation & A/B testing patterns | `notes/phase-07-proxy-edge/04-geolocation-ab-testing/notes.md` | ⬜ |
+| 5 | The Edge Runtime — what it was, and its Next.js 16 deprecation | `notes/phase-07-proxy-edge/05-edge-runtime-deprecation/notes.md` | ⬜ |
+| 6 | Migrating from Middleware to Proxy | `notes/phase-07-proxy-edge/06-middleware-to-proxy-migration/notes.md` | ⬜ |
+| 7 | Proxy performance & execution-order gotchas | `notes/phase-07-proxy-edge/07-proxy-performance-gotchas/notes.md` | ⬜ |
 
 ### Phase 8 — Metadata, SEO & Assets (8 topics)
 
