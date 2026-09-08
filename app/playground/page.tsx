@@ -67,6 +67,12 @@ const demos = [
       { href: '/playground/phase-05-server-actions/08-progressive-enhancement', label: '08. Progressive enhancement (forms without JS)' },
     ],
   },
+  {
+    phase: 'Phase 6 — Route Handlers',
+    items: [
+      { href: '/playground/phase-06-route-handlers/01-route-handler-basics', label: '01. Route Handler basics' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
