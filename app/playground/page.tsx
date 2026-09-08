@@ -99,6 +99,7 @@ const demos = [
       { href: '/playground/phase-08-metadata-seo-assets/05-og-images-next-og', label: '05. OG/Twitter images with next/og (ImageResponse)' },
       { href: '/playground/phase-08-metadata-seo-assets/06-next-image-deep-dive', label: '06. next/image deep dive' },
       { href: '/playground/phase-08-metadata-seo-assets/07-next-font', label: '07. next/font — self-hosting & layout shift prevention' },
+      { href: '/playground/phase-08-metadata-seo-assets/08-favicons-app-icons', label: '08. Favicons & app icon conventions' },
     ],
   },
 ];

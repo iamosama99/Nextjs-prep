@@ -313,7 +313,7 @@ the Node.js runtime (`runtime` config throws if set in `proxy.ts`), and `NextReq
 properties were removed in v15 (values were always hosting-provider-supplied; current guidance is
 reading provider-specific headers directly, or `@vercel/functions` on Vercel).
 
-**In progress:** Phase 8 (Metadata, SEO & Assets) started — Topics 1–2 done. Topic 1 verification against a
+**Resolved:** Phase 8 (Metadata, SEO & Assets, 8/8 topics) is complete. Topic 1 verification against a
 real dev server surfaced a genuine, non-obvious finding beyond the docs' own framing: `title.template`
 defined in a `layout.tsx` does **not** apply to a `title` set in the `page.tsx` sitting in that same route
 segment (they're siblings, not parent/child, for this purpose) — confirmed by a demo where the index
@@ -358,7 +358,18 @@ for cyrillic, cyrillic-ext, greek, greek-ext, vietnamese, and latin-ext, each sc
 (the real mechanism limiting what the browser actually fetches). Also verified zero real
 `fonts.googleapis.com`/`fonts.gstatic.com` references anywhere in a real page/build (genuine self-hosting),
 a local `.woff2` served byte-for-byte identical from `/_next/static/media/`, and `adjustFontFallback`'s
-metrics-matched fallback `@font-face` rules appearing unprompted.
+metrics-matched fallback `@font-face` rules appearing unprompted. Topic 8 verified icon-convention
+inheritance is per-icon-type, not all-or-nothing: a nested segment's own `icon.tsx` overrides the root's
+for that subtree while its `apple-icon` still inherits from the root (same shallow, per-field pattern
+Topic 3 established), and confirmed the numbered multi-icon convention (`icon1`, `icon2`, ...) works for
+code-generated `.tsx` icons too, not just the image-file case the docs happen to document it under.
+
+**Testing note (all of Phase 8):** mixing `next dev` and `next build`/`next start` against the same
+`.next` directory without a full clean rebuild between them produced confusing, non-reproducible 404s for
+several file-based routes during Topic 8's icon testing — resolved by always deleting `.next` before
+switching between dev and a production build/start cycle. Worth remembering for any future topic that
+tests build classifications: verify claims against a genuinely clean build, not a `.next` directory that's
+seen both dev and prod servers.
 
 ---
 
@@ -489,13 +500,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 5 | Open Graph / Twitter images with `next/og` (`ImageResponse`) | `notes/phase-08-metadata-seo-assets/05-og-images-next-og/notes.md` | ✅ |
 | 6 | `next/image` deep dive (optimization, `sizes`, `priority`, remote patterns) | `notes/phase-08-metadata-seo-assets/06-next-image-deep-dive/notes.md` | ✅ |
 | 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | ✅ |
-| 8 | Favicons & app icon conventions | `notes/phase-08-metadata-seo-assets/08-favicons-app-icons/notes.md` | 👉 |
+| 8 | Favicons & app icon conventions | `notes/phase-08-metadata-seo-assets/08-favicons-app-icons/notes.md` | ✅ |
 
 ### Phase 9 — Styling in Next.js (6 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | CSS Modules in Next.js | `notes/phase-09-styling/01-css-modules/notes.md` | ⬜ |
+| 1 | CSS Modules in Next.js | `notes/phase-09-styling/01-css-modules/notes.md` | 👉 |
 | 2 | Global styles & the root layout | `notes/phase-09-styling/02-global-styles-root-layout/notes.md` | ⬜ |
 | 3 | Tailwind CSS integration | `notes/phase-09-styling/03-tailwind-integration/notes.md` | ⬜ |
 | 4 | CSS-in-JS libraries & the RSC boundary problem | `notes/phase-09-styling/04-css-in-js-rsc-boundary/notes.md` | ⬜ |
