@@ -220,6 +220,27 @@ playground routes that read `params` unguarded (`05-dynamic-segments`,
 push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
 cleanly — this is a mechanical compatibility fix, not a content change to those topics.
 
+**Resolved:** Phase 5 (8/8 topics) is complete — Server Actions & Mutations, from the `'use server'`
+directive through forms, `useFormStatus`/`useActionState`/`useOptimistic`, revalidation choices,
+security, and progressive enhancement. Verification here leaned unusually heavily on raw HTTP
+(curl against the compiled hidden-field action encoding) rather than a browser, since no browser
+automation tool is available in this environment — documented honestly per topic rather than
+overclaimed. Two genuine findings emerged from that verification that corrected an initial
+assumption rather than just confirming the docs: Topic 6 found that `revalidateTag`'s
+stale-while-revalidate response-bundling exception (from Topic 1's single-response model)
+specifically describes the JS-hydrated RPC dispatch path, not the no-JS fallback (which is always
+a fresh full-page render regardless of which revalidation call was used) — and an initial
+`refresh()` test that appeared to show it invalidating cache turned out to be contamination from
+a prior action in the same test run, corrected by isolating the test cleanly. Topic 8 found that a
+Client Component's `<form action={realAction}>` retains the exact same no-JS fallback encoding as
+a Server Component's — the docs' "Client Components queue submissions" language describes runtime
+behavior during the JS-loading window specifically, not an absence of the fallback, which a plain
+reading could easily (and incorrectly) suggest. Topic 7's security demo went further than
+description: it reproduced a real admin-bypass and a real IDOR vulnerability end-to-end against a
+simulated session, confirmed each was blocked by its corrected counterpart, and confirmed the
+framework's Origin/Host CSRF check rejects a forged request with `"Invalid Server Actions
+request."`
+
 **Resolved:** Phase 4 (10/10 topics) is complete — Server Components & Data Fetching, scoped
 to what's actually Next.js-specific per this repo's relationship to `React-prep` (which
 already covers RSC fundamentals; this phase never re-derives them). Four topics (2, 7, 8, 9)
@@ -335,13 +356,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 5 | `useOptimistic` for optimistic UI | `notes/phase-05-server-actions/05-use-optimistic/notes.md` | ✅ |
 | 6 | Revalidating data after a mutation | `notes/phase-05-server-actions/06-revalidating-after-mutation/notes.md` | ✅ |
 | 7 | Server Action security (auth checks, not trusting the client) | `notes/phase-05-server-actions/07-server-action-security/notes.md` | ✅ |
-| 8 | Progressive enhancement (forms working without JS) | `notes/phase-05-server-actions/08-progressive-enhancement/notes.md` | 👉 |
+| 8 | Progressive enhancement (forms working without JS) | `notes/phase-05-server-actions/08-progressive-enhancement/notes.md` | ✅ |
 
 ### Phase 6 — Route Handlers (APIs) (7 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Route Handler basics (`route.ts`, `GET`/`POST`/etc.) | `notes/phase-06-route-handlers/01-route-handler-basics/notes.md` | ⬜ |
+| 1 | Route Handler basics (`route.ts`, `GET`/`POST`/etc.) | `notes/phase-06-route-handlers/01-route-handler-basics/notes.md` | 👉 |
 | 2 | `NextRequest` / `NextResponse` | `notes/phase-06-route-handlers/02-nextrequest-nextresponse/notes.md` | ⬜ |
 | 3 | Dynamic route handlers & params | `notes/phase-06-route-handlers/03-dynamic-route-handlers/notes.md` | ⬜ |
 | 4 | Reading search params, headers, cookies in handlers | `notes/phase-06-route-handlers/04-reading-request-data/notes.md` | ⬜ |

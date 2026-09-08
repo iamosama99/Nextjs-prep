@@ -64,6 +64,7 @@ const demos = [
       { href: '/playground/phase-05-server-actions/05-use-optimistic', label: '05. useOptimistic — optimistic UI' },
       { href: '/playground/phase-05-server-actions/06-revalidating-after-mutation', label: '06. Revalidating data after a mutation' },
       { href: '/playground/phase-05-server-actions/07-server-action-security', label: '07. Server Action security' },
+      { href: '/playground/phase-05-server-actions/08-progressive-enhancement', label: '08. Progressive enhancement (forms without JS)' },
     ],
   },
 ];
