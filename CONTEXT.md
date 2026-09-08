@@ -410,8 +410,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 3 | Auth checks in Proxy (optimistic vs. secure checks) | `notes/phase-07-proxy-edge/03-auth-checks-in-proxy/notes.md` | ✅ |
 | 4 | Geolocation & A/B testing patterns | `notes/phase-07-proxy-edge/04-geolocation-ab-testing/notes.md` | ✅ |
 | 5 | The Edge Runtime — what it was, and its Next.js 16 deprecation | `notes/phase-07-proxy-edge/05-edge-runtime-deprecation/notes.md` | ✅ |
-| 6 | Migrating from Middleware to Proxy | `notes/phase-07-proxy-edge/06-middleware-to-proxy-migration/notes.md` | 👉 |
-| 7 | Proxy performance & execution-order gotchas | `notes/phase-07-proxy-edge/07-proxy-performance-gotchas/notes.md` | ⬜ |
+| 6 | Migrating from Middleware to Proxy | `notes/phase-07-proxy-edge/06-middleware-to-proxy-migration/notes.md` | ✅ |
+| 7 | Proxy performance & execution-order gotchas | `notes/phase-07-proxy-edge/07-proxy-performance-gotchas/notes.md` | 👉 |
 
 ### Phase 8 — Metadata, SEO & Assets (8 topics)
 

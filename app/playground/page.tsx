@@ -85,6 +85,7 @@ const demos = [
       { href: '/playground/phase-07-proxy-edge/02-rewrites-redirects-headers', label: '02. Rewrites, redirects & headers from Proxy' },
       { href: '/playground/phase-07-proxy-edge/03-auth-checks-in-proxy', label: '03. Auth checks in Proxy' },
       { href: '/playground/phase-07-proxy-edge/04-geolocation-ab-testing', label: '04. Geolocation & A/B testing patterns' },
+      { href: '/playground/phase-07-proxy-edge/06-middleware-to-proxy-migration', label: '06. Migrating from Middleware to Proxy' },
     ],
   },
 ];

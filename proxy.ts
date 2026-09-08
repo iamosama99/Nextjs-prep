@@ -1,8 +1,9 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest, type NextFetchEvent } from 'next/server';
 import { runTopic01 } from './proxy-logic/topic-01-basics';
 import { runTopic02 } from './proxy-logic/topic-02-rewrites-redirects-headers';
 import { runTopic03 } from './proxy-logic/topic-03-auth-checks';
 import { runTopic04 } from './proxy-logic/topic-04-geolocation-ab-testing';
+import { runTopic06 } from './proxy-logic/topic-06-waituntil';
 
 // Only ONE proxy.ts is allowed per project — the docs' own recommendation is
 // to break logic into modules and compose them here, aggregated for
@@ -10,7 +11,7 @@ import { runTopic04 } from './proxy-logic/topic-04-geolocation-ab-testing';
 // ./proxy-logic/ and gets dispatched from this single function based on
 // pathname, rather than each topic getting its own isolated proxy file the
 // way every other phase's topics could.
-export function proxy(request: NextRequest) {
+export function proxy(request: NextRequest, event: NextFetchEvent) {
   const { pathname } = request.nextUrl;
 
   const topic01 = runTopic01(request, pathname);
@@ -24,6 +25,9 @@ export function proxy(request: NextRequest) {
 
   const topic04 = runTopic04(request, pathname);
   if (topic04) return topic04;
+
+  const topic06 = runTopic06(request, event, pathname);
+  if (topic06) return topic06;
 
   return NextResponse.next();
 }
