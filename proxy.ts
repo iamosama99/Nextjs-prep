@@ -4,6 +4,7 @@ import { runTopic02 } from './proxy-logic/topic-02-rewrites-redirects-headers';
 import { runTopic03 } from './proxy-logic/topic-03-auth-checks';
 import { runTopic04 } from './proxy-logic/topic-04-geolocation-ab-testing';
 import { runTopic06 } from './proxy-logic/topic-06-waituntil';
+import { runTopic07 } from './proxy-logic/topic-07-performance';
 
 // Only ONE proxy.ts is allowed per project — the docs' own recommendation is
 // to break logic into modules and compose them here, aggregated for
@@ -11,7 +12,9 @@ import { runTopic06 } from './proxy-logic/topic-06-waituntil';
 // ./proxy-logic/ and gets dispatched from this single function based on
 // pathname, rather than each topic getting its own isolated proxy file the
 // way every other phase's topics could.
-export function proxy(request: NextRequest, event: NextFetchEvent) {
+// Marked async because Topic 7's fetch-cache check needs to await inside —
+// per the docs, proxy "can be marked async if using await inside."
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const { pathname } = request.nextUrl;
 
   const topic01 = runTopic01(request, pathname);
@@ -28,6 +31,9 @@ export function proxy(request: NextRequest, event: NextFetchEvent) {
 
   const topic06 = runTopic06(request, event, pathname);
   if (topic06) return topic06;
+
+  const topic07 = await runTopic07(request, pathname);
+  if (topic07) return topic07;
 
   return NextResponse.next();
 }

@@ -220,6 +220,24 @@ playground routes that read `params` unguarded (`05-dynamic-segments`,
 push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
 cleanly — this is a mechanical compatibility fix, not a content change to those topics.
 
+**Resolved:** Phase 7 (7/7 topics) is complete — Proxy (formerly Middleware) & the Edge Runtime,
+fully re-scoped for Next.js 16 as detailed in the "Re-scoped for Next.js 16" note above Phase 7's
+table. Since only one `proxy.ts` is allowed per project (unlike every other phase, where each topic
+got isolated demo files), every topic's demo logic lives in its own module under `proxy-logic/`,
+composed into the single root `proxy.ts` — the docs' own recommended organization pattern, adopted
+here out of necessity. Verification leaned unusually heavily on deliberately-triggered-then-reverted
+build errors (Topic 5's two distinct, precisely-worded runtime-config errors) and on running the
+actual official `middleware-to-proxy` codemod against an isolated scratch file outside this project
+(Topic 6) rather than trusting docs prose. Two documented claims were tested directly rather than
+repeated: Topic 7 confirmed a Server Action's compiled POST reaches proxy exactly like any other
+request to its defining page's path (via a raw POST built from the real `$ACTION_ID_` field, the
+same technique Phase 5 used throughout), and separately confirmed `fetch()`'s cache options
+genuinely have no effect inside proxy (two consecutive proxy-side fetches with `revalidate: 60`
+returned two different values). Topic 5 also surfaced a finding beyond what Phase 3 Topic 11 had
+already noted: under this project's `cacheComponents: true`, the `runtime` segment config isn't
+merely unsupported for `'edge'` — it's rejected for *any* value, including the nominally-default
+`'nodejs'`, confirmed via a real, then-reverted build error.
+
 **Resolved:** Phase 6 (7/7 topics) is complete — Route Handlers, from `route.ts` basics through
 `NextRequest`/`NextResponse`, dynamic segments, the redundant-but-not-quite read APIs
 (`next/headers` vs. the request object), raw `ReadableStream` responses, CORS/webhooks, and a
@@ -411,13 +429,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 4 | Geolocation & A/B testing patterns | `notes/phase-07-proxy-edge/04-geolocation-ab-testing/notes.md` | ✅ |
 | 5 | The Edge Runtime — what it was, and its Next.js 16 deprecation | `notes/phase-07-proxy-edge/05-edge-runtime-deprecation/notes.md` | ✅ |
 | 6 | Migrating from Middleware to Proxy | `notes/phase-07-proxy-edge/06-middleware-to-proxy-migration/notes.md` | ✅ |
-| 7 | Proxy performance & execution-order gotchas | `notes/phase-07-proxy-edge/07-proxy-performance-gotchas/notes.md` | 👉 |
+| 7 | Proxy performance & execution-order gotchas | `notes/phase-07-proxy-edge/07-proxy-performance-gotchas/notes.md` | ✅ |
 
 ### Phase 8 — Metadata, SEO & Assets (8 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Metadata API — static metadata export | `notes/phase-08-metadata-seo-assets/01-static-metadata/notes.md` | ⬜ |
+| 1 | Metadata API — static metadata export | `notes/phase-08-metadata-seo-assets/01-static-metadata/notes.md` | 👉 |
 | 2 | `generateMetadata` — dynamic, data-driven metadata | `notes/phase-08-metadata-seo-assets/02-generate-metadata/notes.md` | ⬜ |
 | 3 | Metadata inheritance & overriding across layouts | `notes/phase-08-metadata-seo-assets/03-metadata-inheritance/notes.md` | ⬜ |
 | 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | ⬜ |

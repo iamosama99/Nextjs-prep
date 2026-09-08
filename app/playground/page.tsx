@@ -86,6 +86,7 @@ const demos = [
       { href: '/playground/phase-07-proxy-edge/03-auth-checks-in-proxy', label: '03. Auth checks in Proxy' },
       { href: '/playground/phase-07-proxy-edge/04-geolocation-ab-testing', label: '04. Geolocation & A/B testing patterns' },
       { href: '/playground/phase-07-proxy-edge/06-middleware-to-proxy-migration', label: '06. Migrating from Middleware to Proxy' },
+      { href: '/playground/phase-07-proxy-edge/07-proxy-performance-gotchas', label: '07. Proxy performance & execution-order gotchas' },
     ],
   },
 ];
