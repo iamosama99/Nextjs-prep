@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { runTopic01 } from './proxy-logic/topic-01-basics';
+import { runTopic02 } from './proxy-logic/topic-02-rewrites-redirects-headers';
 
 // Only ONE proxy.ts is allowed per project — the docs' own recommendation is
 // to break logic into modules and compose them here, aggregated for
@@ -12,6 +13,9 @@ export function proxy(request: NextRequest) {
 
   const topic01 = runTopic01(request, pathname);
   if (topic01) return topic01;
+
+  const topic02 = runTopic02(request, pathname);
+  if (topic02) return topic02;
 
   return NextResponse.next();
 }

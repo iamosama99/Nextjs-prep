@@ -82,6 +82,7 @@ const demos = [
     phase: 'Phase 7 — Proxy (formerly Middleware) & the Edge Runtime',
     items: [
       { href: '/playground/phase-07-proxy-edge/01-proxy-basics', label: '01. Proxy basics & the matcher config' },
+      { href: '/playground/phase-07-proxy-edge/02-rewrites-redirects-headers', label: '02. Rewrites, redirects & headers from Proxy' },
     ],
   },
 ];

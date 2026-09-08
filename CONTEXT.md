@@ -406,8 +406,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | # | Topic | File | Status |
 |---|-------|------|--------|
 | 1 | Proxy basics & the `matcher` config | `notes/phase-07-proxy-edge/01-proxy-basics/notes.md` | ✅ |
-| 2 | Rewrites, redirects, and headers from Proxy | `notes/phase-07-proxy-edge/02-rewrites-redirects-headers/notes.md` | 👉 |
-| 3 | Auth checks in Proxy (optimistic vs. secure checks) | `notes/phase-07-proxy-edge/03-auth-checks-in-proxy/notes.md` | ⬜ |
+| 2 | Rewrites, redirects, and headers from Proxy | `notes/phase-07-proxy-edge/02-rewrites-redirects-headers/notes.md` | ✅ |
+| 3 | Auth checks in Proxy (optimistic vs. secure checks) | `notes/phase-07-proxy-edge/03-auth-checks-in-proxy/notes.md` | 👉 |
 | 4 | Geolocation & A/B testing patterns | `notes/phase-07-proxy-edge/04-geolocation-ab-testing/notes.md` | ⬜ |
 | 5 | The Edge Runtime — what it was, and its Next.js 16 deprecation | `notes/phase-07-proxy-edge/05-edge-runtime-deprecation/notes.md` | ⬜ |
 | 6 | Migrating from Middleware to Proxy | `notes/phase-07-proxy-edge/06-middleware-to-proxy-migration/notes.md` | ⬜ |
