@@ -330,8 +330,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 |---|-------|------|--------|
 | 1 | Defining Server Actions (`'use server'`) | `notes/phase-05-server-actions/01-defining-server-actions/notes.md` | ✅ |
 | 2 | Calling Server Actions from forms | `notes/phase-05-server-actions/02-server-actions-in-forms/notes.md` | ✅ |
-| 3 | `useFormStatus` & pending states | `notes/phase-05-server-actions/03-use-form-status/notes.md` | 👉 |
-| 4 | `useActionState` (form state + validation errors) | `notes/phase-05-server-actions/04-use-action-state/notes.md` | ⬜ |
+| 3 | `useFormStatus` & pending states | `notes/phase-05-server-actions/03-use-form-status/notes.md` | ✅ |
+| 4 | `useActionState` (form state + validation errors) | `notes/phase-05-server-actions/04-use-action-state/notes.md` | 👉 |
 | 5 | `useOptimistic` for optimistic UI | `notes/phase-05-server-actions/05-use-optimistic/notes.md` | ⬜ |
 | 6 | Revalidating data after a mutation | `notes/phase-05-server-actions/06-revalidating-after-mutation/notes.md` | ⬜ |
 | 7 | Server Action security (auth checks, not trusting the client) | `notes/phase-05-server-actions/07-server-action-security/notes.md` | ⬜ |

@@ -59,6 +59,7 @@ const demos = [
     items: [
       { href: '/playground/phase-05-server-actions/01-defining-server-actions', label: "01. Defining Server Actions ('use server')" },
       { href: '/playground/phase-05-server-actions/02-server-actions-in-forms', label: '02. Calling Server Actions from forms' },
+      { href: '/playground/phase-05-server-actions/03-use-form-status', label: '03. useFormStatus & pending states' },
     ],
   },
 ];
