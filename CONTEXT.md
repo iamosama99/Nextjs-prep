@@ -328,6 +328,13 @@ full `generateStaticParams` coverage still hit the general Cache Components dyna
 its page component awaited `params` unguarded — the same Phase 3 Topic 8 push-into-Suspense fix applied
 here too — and even after both fixes, the route classifies as Partial Prerender (`◐`) rather than full
 static (`●`), since `generateMetadata`'s own `params` read has no way to be Suspense-wrapped itself.
+Topic 3's three-level-deep inheritance demo corrected two of its own working predictions after seeing real
+`curl` output: a title in the *same* segment as a layout defining `title.template` isn't left untemplated
+when that template is skipped — the next real ancestor's template applies instead (verified: `Section Home
+| Site`, not `Section Home`) — and `title.default` itself is not exempt from templating either (verified:
+`Section | Site`, not bare `Section`); only `title.absolute` is genuinely exempt. Also reconfirmed directly:
+templates never stack across multiple ancestor levels, and per-field inheritance (`openGraph`, `description`)
+is fully independent of whatever an intermediate layout does to `title`.
 
 ---
 
@@ -453,8 +460,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 |---|-------|------|--------|
 | 1 | Metadata API — static metadata export | `notes/phase-08-metadata-seo-assets/01-static-metadata/notes.md` | ✅ |
 | 2 | `generateMetadata` — dynamic, data-driven metadata | `notes/phase-08-metadata-seo-assets/02-generate-metadata/notes.md` | ✅ |
-| 3 | Metadata inheritance & overriding across layouts | `notes/phase-08-metadata-seo-assets/03-metadata-inheritance/notes.md` | 👉 |
-| 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | ⬜ |
+| 3 | Metadata inheritance & overriding across layouts | `notes/phase-08-metadata-seo-assets/03-metadata-inheritance/notes.md` | ✅ |
+| 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | 👉 |
 | 5 | Open Graph / Twitter images with `next/og` (`ImageResponse`) | `notes/phase-08-metadata-seo-assets/05-og-images-next-og/notes.md` | ⬜ |
 | 6 | `next/image` deep dive (optimization, `sizes`, `priority`, remote patterns) | `notes/phase-08-metadata-seo-assets/06-next-image-deep-dive/notes.md` | ⬜ |
 | 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | ⬜ |

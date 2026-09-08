@@ -94,6 +94,7 @@ const demos = [
     items: [
       { href: '/playground/phase-08-metadata-seo-assets/01-static-metadata', label: '01. Metadata API — static metadata export' },
       { href: '/playground/phase-08-metadata-seo-assets/02-generate-metadata', label: '02. generateMetadata — dynamic, data-driven metadata' },
+      { href: '/playground/phase-08-metadata-seo-assets/03-metadata-inheritance', label: '03. Metadata inheritance & overriding across layouts' },
     ],
   },
 ];
