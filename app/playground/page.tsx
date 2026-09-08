@@ -62,6 +62,7 @@ const demos = [
       { href: '/playground/phase-05-server-actions/03-use-form-status', label: '03. useFormStatus & pending states' },
       { href: '/playground/phase-05-server-actions/04-use-action-state', label: '04. useActionState — form state & validation errors' },
       { href: '/playground/phase-05-server-actions/05-use-optimistic', label: '05. useOptimistic — optimistic UI' },
+      { href: '/playground/phase-05-server-actions/06-revalidating-after-mutation', label: '06. Revalidating data after a mutation' },
     ],
   },
 ];
