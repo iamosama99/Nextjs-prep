@@ -328,8 +328,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Defining Server Actions (`'use server'`) | `notes/phase-05-server-actions/01-defining-server-actions/notes.md` | 👉 |
-| 2 | Calling Server Actions from forms | `notes/phase-05-server-actions/02-server-actions-in-forms/notes.md` | ⬜ |
+| 1 | Defining Server Actions (`'use server'`) | `notes/phase-05-server-actions/01-defining-server-actions/notes.md` | ✅ |
+| 2 | Calling Server Actions from forms | `notes/phase-05-server-actions/02-server-actions-in-forms/notes.md` | 👉 |
 | 3 | `useFormStatus` & pending states | `notes/phase-05-server-actions/03-use-form-status/notes.md` | ⬜ |
 | 4 | `useActionState` (form state + validation errors) | `notes/phase-05-server-actions/04-use-action-state/notes.md` | ⬜ |
 | 5 | `useOptimistic` for optimistic UI | `notes/phase-05-server-actions/05-use-optimistic/notes.md` | ⬜ |

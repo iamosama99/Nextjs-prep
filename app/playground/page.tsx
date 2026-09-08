@@ -54,6 +54,12 @@ const demos = [
       { href: '/playground/phase-04-server-components-data/09-wrapping-third-party-libs', label: '09. Wrapping third-party client-only libraries' },
     ],
   },
+  {
+    phase: 'Phase 5 — Server Actions & Mutations',
+    items: [
+      { href: '/playground/phase-05-server-actions/01-defining-server-actions', label: "01. Defining Server Actions ('use server')" },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
