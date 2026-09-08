@@ -71,6 +71,7 @@ const demos = [
     phase: 'Phase 6 — Route Handlers',
     items: [
       { href: '/playground/phase-06-route-handlers/01-route-handler-basics', label: '01. Route Handler basics' },
+      { href: '/playground/phase-06-route-handlers/02-nextrequest-nextresponse', label: '02. NextRequest / NextResponse' },
     ],
   },
 ];
