@@ -313,6 +313,15 @@ the Node.js runtime (`runtime` config throws if set in `proxy.ts`), and `NextReq
 properties were removed in v15 (values were always hosting-provider-supplied; current guidance is
 reading provider-specific headers directly, or `@vercel/functions` on Vercel).
 
+**In progress:** Phase 8 (Metadata, SEO & Assets) started — Topic 1 (static metadata export) done.
+Verification against a real dev server surfaced a genuine, non-obvious finding beyond the docs' own
+framing: `title.template` defined in a `layout.tsx` does **not** apply to a `title` set in the `page.tsx`
+sitting in that same route segment (they're siblings, not parent/child, for this purpose) — confirmed by
+a demo where the index page's plain-string title rendered untemplated while an identically-shaped title
+one segment deeper correctly picked up the template. Also confirmed directly: metadata merging across
+segments is shallow (redefining `openGraph` in a child silently drops the parent's `openGraph.description`
+unless repeated), and all four demo routes classify as fully static (`○`) in a real `npm run build`.
+
 ---
 
 ## Progress Tracker
@@ -435,8 +444,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Metadata API — static metadata export | `notes/phase-08-metadata-seo-assets/01-static-metadata/notes.md` | 👉 |
-| 2 | `generateMetadata` — dynamic, data-driven metadata | `notes/phase-08-metadata-seo-assets/02-generate-metadata/notes.md` | ⬜ |
+| 1 | Metadata API — static metadata export | `notes/phase-08-metadata-seo-assets/01-static-metadata/notes.md` | ✅ |
+| 2 | `generateMetadata` — dynamic, data-driven metadata | `notes/phase-08-metadata-seo-assets/02-generate-metadata/notes.md` | 👉 |
 | 3 | Metadata inheritance & overriding across layouts | `notes/phase-08-metadata-seo-assets/03-metadata-inheritance/notes.md` | ⬜ |
 | 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | ⬜ |
 | 5 | Open Graph / Twitter images with `next/og` (`ImageResponse`) | `notes/phase-08-metadata-seo-assets/05-og-images-next-og/notes.md` | ⬜ |
