@@ -89,6 +89,13 @@ const demos = [
       { href: '/playground/phase-07-proxy-edge/07-proxy-performance-gotchas', label: '07. Proxy performance & execution-order gotchas' },
     ],
   },
+  {
+    phase: 'Phase 8 — Metadata, SEO & Assets',
+    items: [
+      { href: '/playground/phase-08-metadata-seo-assets/01-static-metadata', label: '01. Metadata API — static metadata export' },
+      { href: '/playground/phase-08-metadata-seo-assets/02-generate-metadata', label: '02. generateMetadata — dynamic, data-driven metadata' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
