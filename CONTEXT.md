@@ -220,6 +220,23 @@ playground routes that read `params` unguarded (`05-dynamic-segments`,
 push the `params` await into a `<Suspense>`-wrapped child component so the app still builds
 cleanly — this is a mechanical compatibility fix, not a content change to those topics.
 
+**Resolved:** Phase 6 (7/7 topics) is complete — Route Handlers, from `route.ts` basics through
+`NextRequest`/`NextResponse`, dynamic segments, the redundant-but-not-quite read APIs
+(`next/headers` vs. the request object), raw `ReadableStream` responses, CORS/webhooks, and a
+closing comparison against Server Actions (notes-only, per the Phase 3 Topic 11 / Phase 4 Topic 10
+precedent for synthesis topics). Every topic's demo lives under its own `api/` subpath to avoid the
+`route.ts`/`page.tsx` segment conflict. Verification leaned on real requests throughout: a genuine
+405 and an auto-generated `OPTIONS`/`Allow` header (Topic 1); all three Cache-Components
+classifications confirmed against a real build, including two consecutive `Math.random()` calls
+actually differing (Topic 1); `generateStaticParams` combined with `"use cache"` confirmed to cache
+by argument regardless of build-time pre-generation (Topic 3); `cookies()` from `next/headers`
+confirmed to be genuinely read-write in a Route Handler (unlike a Server Component) by producing a
+real `Set-Cookie` header with no `NextResponse` involved (Topic 4); real incremental stream timing
+captured with a raw `fetch`/`getReader()` script rather than trusting `curl`'s buffered output, same
+methodology as Phase 4 Topic 6 (Topic 5); and a webhook-triggered `revalidateTag` re-confirmed as
+genuinely stale-while-revalidate across two separate real requests, the cleaner version of a case
+Phase 5 Topic 6 had predicted but couldn't isolate as cleanly itself (Topic 6).
+
 **Resolved:** Phase 5 (8/8 topics) is complete — Server Actions & Mutations, from the `'use server'`
 directive through forms, `useFormStatus`/`useActionState`/`useOptimistic`, revalidation choices,
 security, and progressive enhancement. Verification here leaned unusually heavily on raw HTTP
@@ -368,13 +385,13 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 4 | Reading search params, headers, cookies in handlers | `notes/phase-06-route-handlers/04-reading-request-data/notes.md` | ✅ |
 | 5 | Streaming responses from a Route Handler | `notes/phase-06-route-handlers/05-streaming-responses/notes.md` | ✅ |
 | 6 | CORS & webhooks in Route Handlers | `notes/phase-06-route-handlers/06-cors-and-webhooks/notes.md` | ✅ |
-| 7 | Route Handlers vs Server Actions — when to use which | `notes/phase-06-route-handlers/07-route-handlers-vs-server-actions/notes.md` | 👉 |
+| 7 | Route Handlers vs Server Actions — when to use which | `notes/phase-06-route-handlers/07-route-handlers-vs-server-actions/notes.md` | ✅ |
 
 ### Phase 7 — Middleware & Edge Runtime (7 topics)
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | Middleware basics & the `matcher` config | `notes/phase-07-middleware-edge/01-middleware-basics/notes.md` | ⬜ |
+| 1 | Middleware basics & the `matcher` config | `notes/phase-07-middleware-edge/01-middleware-basics/notes.md` | 👉 |
 | 2 | Rewrites, redirects, and response headers from middleware | `notes/phase-07-middleware-edge/02-rewrites-redirects-headers/notes.md` | ⬜ |
 | 3 | Auth checks in middleware (cookie/session inspection) | `notes/phase-07-middleware-edge/03-auth-checks-in-middleware/notes.md` | ⬜ |
 | 4 | Geolocation & A/B testing patterns | `notes/phase-07-middleware-edge/04-geolocation-ab-testing/notes.md` | ⬜ |
