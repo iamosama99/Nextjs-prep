@@ -97,6 +97,7 @@ const demos = [
       { href: '/playground/phase-08-metadata-seo-assets/03-metadata-inheritance', label: '03. Metadata inheritance & overriding across layouts' },
       { href: '/playground/phase-08-metadata-seo-assets/04-sitemap-robots', label: '04. sitemap.ts & robots.ts generation' },
       { href: '/playground/phase-08-metadata-seo-assets/05-og-images-next-og', label: '05. OG/Twitter images with next/og (ImageResponse)' },
+      { href: '/playground/phase-08-metadata-seo-assets/06-next-image-deep-dive', label: '06. next/image deep dive' },
     ],
   },
 ];

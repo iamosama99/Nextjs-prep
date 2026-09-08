@@ -345,7 +345,13 @@ reading unguarded `params` (no `generateImageMetadata`) does **not** produce a C
 the way an unguarded page body or `generateMetadata` does — it silently classifies dynamic (`ƒ`) instead,
 confirmed with a clean build and a real fetched PNG reflecting the slug. Also verified directly: the actual
 generated PNG's real pixel dimensions (via file inspection) matched the `size` config export exactly, and
-the static (non-dynamic-segment) OG/Twitter images both classified fully static (`○`).
+the static (non-dynamic-segment) OG/Twitter images both classified fully static (`○`). Topic 6 found a
+training-data-relevant trap `AGENTS.md` specifically warns about: `priority` is deprecated in Next.js 16
+in favor of `preload`, and it's not just a rename — verified by direct comparison that only `preload`
+actually injects the `<link rel="preload">` tag into `<head>`; `priority` still compiles and still
+suppresses default lazy-loading, but no longer produces the preload hint that was its whole purpose. Also
+verified the exact `srcset` difference `sizes` makes (2 entries without it, 9 with it, same image) and that
+remote images require their exact host in `images.remotePatterns`.
 
 ---
 
@@ -474,8 +480,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 3 | Metadata inheritance & overriding across layouts | `notes/phase-08-metadata-seo-assets/03-metadata-inheritance/notes.md` | ✅ |
 | 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | ✅ |
 | 5 | Open Graph / Twitter images with `next/og` (`ImageResponse`) | `notes/phase-08-metadata-seo-assets/05-og-images-next-og/notes.md` | ✅ |
-| 6 | `next/image` deep dive (optimization, `sizes`, `priority`, remote patterns) | `notes/phase-08-metadata-seo-assets/06-next-image-deep-dive/notes.md` | 👉 |
-| 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | ⬜ |
+| 6 | `next/image` deep dive (optimization, `sizes`, `priority`, remote patterns) | `notes/phase-08-metadata-seo-assets/06-next-image-deep-dive/notes.md` | ✅ |
+| 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | 👉 |
 | 8 | Favicons & app icon conventions | `notes/phase-08-metadata-seo-assets/08-favicons-app-icons/notes.md` | ⬜ |
 
 ### Phase 9 — Styling in Next.js (6 topics)
