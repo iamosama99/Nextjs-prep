@@ -364,8 +364,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 |---|-------|------|--------|
 | 1 | Route Handler basics (`route.ts`, `GET`/`POST`/etc.) | `notes/phase-06-route-handlers/01-route-handler-basics/notes.md` | ✅ |
 | 2 | `NextRequest` / `NextResponse` | `notes/phase-06-route-handlers/02-nextrequest-nextresponse/notes.md` | ✅ |
-| 3 | Dynamic route handlers & params | `notes/phase-06-route-handlers/03-dynamic-route-handlers/notes.md` | 👉 |
-| 4 | Reading search params, headers, cookies in handlers | `notes/phase-06-route-handlers/04-reading-request-data/notes.md` | ⬜ |
+| 3 | Dynamic route handlers & params | `notes/phase-06-route-handlers/03-dynamic-route-handlers/notes.md` | ✅ |
+| 4 | Reading search params, headers, cookies in handlers | `notes/phase-06-route-handlers/04-reading-request-data/notes.md` | 👉 |
 | 5 | Streaming responses from a Route Handler | `notes/phase-06-route-handlers/05-streaming-responses/notes.md` | ⬜ |
 | 6 | CORS & webhooks in Route Handlers | `notes/phase-06-route-handlers/06-cors-and-webhooks/notes.md` | ⬜ |
 | 7 | Route Handlers vs Server Actions — when to use which | `notes/phase-06-route-handlers/07-route-handlers-vs-server-actions/notes.md` | ⬜ |
