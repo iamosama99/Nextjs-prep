@@ -351,7 +351,14 @@ in favor of `preload`, and it's not just a rename — verified by direct compari
 actually injects the `<link rel="preload">` tag into `<head>`; `priority` still compiles and still
 suppresses default lazy-loading, but no longer produces the preload hint that was its whole purpose. Also
 verified the exact `srcset` difference `sizes` makes (2 entries without it, 9 with it, same image) and that
-remote images require their exact host in `images.remotePatterns`.
+remote images require their exact host in `images.remotePatterns`. Topic 7 found `subsets` on
+`next/font/google` does **not** restrict which `@font-face` blocks get generated — the docs' own wording
+says it controls preloading — verified directly: requesting only `latin` still produced separate blocks
+for cyrillic, cyrillic-ext, greek, greek-ext, vietnamese, and latin-ext, each scoped by `unicode-range`
+(the real mechanism limiting what the browser actually fetches). Also verified zero real
+`fonts.googleapis.com`/`fonts.gstatic.com` references anywhere in a real page/build (genuine self-hosting),
+a local `.woff2` served byte-for-byte identical from `/_next/static/media/`, and `adjustFontFallback`'s
+metrics-matched fallback `@font-face` rules appearing unprompted.
 
 ---
 
@@ -481,8 +488,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 | 4 | `sitemap.ts` & `robots.ts` generation | `notes/phase-08-metadata-seo-assets/04-sitemap-robots/notes.md` | ✅ |
 | 5 | Open Graph / Twitter images with `next/og` (`ImageResponse`) | `notes/phase-08-metadata-seo-assets/05-og-images-next-og/notes.md` | ✅ |
 | 6 | `next/image` deep dive (optimization, `sizes`, `priority`, remote patterns) | `notes/phase-08-metadata-seo-assets/06-next-image-deep-dive/notes.md` | ✅ |
-| 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | 👉 |
-| 8 | Favicons & app icon conventions | `notes/phase-08-metadata-seo-assets/08-favicons-app-icons/notes.md` | ⬜ |
+| 7 | `next/font` (self-hosting, layout shift prevention) | `notes/phase-08-metadata-seo-assets/07-next-font/notes.md` | ✅ |
+| 8 | Favicons & app icon conventions | `notes/phase-08-metadata-seo-assets/08-favicons-app-icons/notes.md` | 👉 |
 
 ### Phase 9 — Styling in Next.js (6 topics)
 
