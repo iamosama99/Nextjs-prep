@@ -74,6 +74,7 @@ const demos = [
       { href: '/playground/phase-06-route-handlers/02-nextrequest-nextresponse', label: '02. NextRequest / NextResponse' },
       { href: '/playground/phase-06-route-handlers/03-dynamic-route-handlers', label: '03. Dynamic route handlers & params' },
       { href: '/playground/phase-06-route-handlers/04-reading-request-data', label: '04. Reading search params, headers & cookies' },
+      { href: '/playground/phase-06-route-handlers/05-streaming-responses', label: '05. Streaming responses from a Route Handler' },
     ],
   },
 ];
