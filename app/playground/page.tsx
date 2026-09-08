@@ -83,6 +83,7 @@ const demos = [
     items: [
       { href: '/playground/phase-07-proxy-edge/01-proxy-basics', label: '01. Proxy basics & the matcher config' },
       { href: '/playground/phase-07-proxy-edge/02-rewrites-redirects-headers', label: '02. Rewrites, redirects & headers from Proxy' },
+      { href: '/playground/phase-07-proxy-edge/03-auth-checks-in-proxy', label: '03. Auth checks in Proxy' },
     ],
   },
 ];
