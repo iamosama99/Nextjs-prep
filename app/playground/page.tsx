@@ -75,6 +75,7 @@ const demos = [
       { href: '/playground/phase-06-route-handlers/03-dynamic-route-handlers', label: '03. Dynamic route handlers & params' },
       { href: '/playground/phase-06-route-handlers/04-reading-request-data', label: '04. Reading search params, headers & cookies' },
       { href: '/playground/phase-06-route-handlers/05-streaming-responses', label: '05. Streaming responses from a Route Handler' },
+      { href: '/playground/phase-06-route-handlers/06-cors-and-webhooks', label: '06. CORS & webhooks in Route Handlers' },
     ],
   },
 ];
