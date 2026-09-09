@@ -371,6 +371,14 @@ switching between dev and a production build/start cycle. Worth remembering for 
 tests build classifications: verify claims against a genuinely clean build, not a `.next` directory that's
 seen both dev and prod servers.
 
+**In progress:** Phase 9 (Styling in Next.js) started — Topic 1 (CSS Modules) done. Verified directly with
+a deliberate same-class-name collision test across two `.module.css` files: both produced genuinely
+different generated class names (`<filename>-module__<hash>__<class>`) with zero collision, and that exact
+readable format persists unchanged in a real production build — it is not stripped down to an opaque hash
+the way minified JS might suggest. Also confirmed the docs' import-order-determines-CSS-order claim for
+real: a `BaseButton` component imported before the page's own CSS Module produced its `.primary` rule
+first in the actual compiled production stylesheet.
+
 ---
 
 ## Progress Tracker
@@ -506,8 +514,8 @@ Legend: ⬜ Not started | ✅ Done | 👉 **Next up**
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 1 | CSS Modules in Next.js | `notes/phase-09-styling/01-css-modules/notes.md` | 👉 |
-| 2 | Global styles & the root layout | `notes/phase-09-styling/02-global-styles-root-layout/notes.md` | ⬜ |
+| 1 | CSS Modules in Next.js | `notes/phase-09-styling/01-css-modules/notes.md` | ✅ |
+| 2 | Global styles & the root layout | `notes/phase-09-styling/02-global-styles-root-layout/notes.md` | 👉 |
 | 3 | Tailwind CSS integration | `notes/phase-09-styling/03-tailwind-integration/notes.md` | ⬜ |
 | 4 | CSS-in-JS libraries & the RSC boundary problem | `notes/phase-09-styling/04-css-in-js-rsc-boundary/notes.md` | ⬜ |
 | 5 | Sass/PostCSS support | `notes/phase-09-styling/05-sass-postcss/notes.md` | ⬜ |

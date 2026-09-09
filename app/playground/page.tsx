@@ -102,6 +102,12 @@ const demos = [
       { href: '/playground/phase-08-metadata-seo-assets/08-favicons-app-icons', label: '08. Favicons & app icon conventions' },
     ],
   },
+  {
+    phase: 'Phase 9 — Styling in Next.js',
+    items: [
+      { href: '/playground/phase-09-styling/01-css-modules', label: '01. CSS Modules in Next.js' },
+    ],
+  },
 ];
 
 export default function PlaygroundIndex() {
